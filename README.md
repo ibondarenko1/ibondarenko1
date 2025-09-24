@@ -1,18 +1,6 @@
-<!-- ===== Animated Header ===== -->
 <p align="center">
-  <img
-    src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:0ea5e9,100:22c55e&text=Ievgen%20(Jack)%20Bondarenko&fontColor=ffffff&fontSize=42&fontAlign=50&fontAlignY=35&desc=Aspiring%20SOC%20Analyst%20%7C%20Cybersecurity%20Student&descAlignY=60&animation=fadeIn"
-    alt="Header"
-  />
+  <img src="https://raw.githubusercontent.com/Adesh-111/Adesh-111/main/dev-working.gif" alt="Coding gif" width="600"/>
 </p>
-
-<p align="center">
-  <img
-    src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&pause=1100&center=true&vCenter=true&width=820&lines=Roseville%2C+California%2C+USA;Home+Lab%3A+Kali+%7C+Windows+%7C+Elastic+%7C+Kibana;Preparing%3A+CompTIA+Network%2B+and+Security%2B"
-    alt="Typing intro"
-  />
-</p>
-
 ---
 
 ## 🚀 About Me
