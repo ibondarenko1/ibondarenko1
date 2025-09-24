@@ -21,7 +21,7 @@
 ---
 
 ## 📫 Connect with Me
-- 💼 [LinkedIn](#) *[(add link later)](https://www.linkedin.com/in/ievgen-jack-bondarenko-b13098241/)*  
+- 💼 [LinkedIn](#) *(https://www.linkedin.com/in/ievgen-jack-bondarenko-b13098241/)*  
 - 🌍 [GitHub Portfolio](https://github.com/ibondarenko1)  
 - ✉️ Email: *(optional)*  
 
