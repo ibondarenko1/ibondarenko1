@@ -1,7 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Adesh-111/Adesh-111/main/dev-working.gif" alt="Coding gif" width="600"/>
+  <img src="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif" alt="Matrix Code Rain" width="1000"/>
 </p>
----
 
 ## 🚀 About Me
 - 🌎 Based in **Roseville, California, USA**
