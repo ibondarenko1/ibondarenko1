@@ -1,7 +1,6 @@
 <!-- ========= Neon Circuit Banner ========= -->
 <p align="center">
-  <img src="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif" alt="Matrix rain / code rain animation" width="1000"/>
-</p>
+  <img src="https://assets9.lottiefiles.com/packages/lf20_2glqweqs.json" alt="Coding animation" width="600"/>
 </p>
 
 <h1 align="center">👋 Hi, I'm Ievgen (Jack) Bondarenko</h1>
