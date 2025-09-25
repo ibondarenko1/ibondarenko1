@@ -41,11 +41,3 @@
 ---
 
 ⭐ *Thanks for visiting my profile! Always open to collaboration and new projects.*
-</p>
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ibondarenko1&layout=compact&theme=radical" alt="Top Languages" />
-</p>
-
----
-
-✨ Thanks for visiting my profile! Always open to collaboration and new projects.
