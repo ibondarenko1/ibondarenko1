@@ -1,7 +1,5 @@
-<!-- Анимированный баннер -->
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/profile-banner.gif" 
-       alt="Cybersecurity Banner" width="1000"/>
+  <img src="profile-banner.gif" alt="Cybersecurity Banner" width="1000"/>
 </p>
 
 # 👋 Hi, I'm Ievgen (Jack) Bondarenko  
