@@ -12,7 +12,7 @@
 - 🌍 Based in **Roseville, California, USA**  
 - 🎓 **Bachelor's Degree** — *National Metallurgical Academy of Ukraine*  
 - 📚 Currently studying **IT & Cybersecurity at Sierra College**  
-- 🛡 Preparing for **CompTIA Security+  and **Cloud Certifications (AWS / Azure)**  
+- 🛡  **CompTIA Security+ * and **Cloud Certifications (AWS / Azure)**  
 - 🖥 Building a **home lab** with *Kali Linux, Windows, Elastic, Kibana*  
 - 🎯 Goal: Start as a **SOC Analyst (Tier 1)** and grow in **MSSP / SOC-as-a-Service**
 
