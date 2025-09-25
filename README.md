@@ -1,7 +1,7 @@
 <!-- ========= Neon Circuit Banner ========= -->
 <p align="center">
-  <!-- Положи GIF в репозиторий (см. инструкции ниже) и укажи правильный путь -->
-  <img src="assets/circuit-banner.gif" alt="Neon circuit animation" width="100%"/>
+  <img src="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif" alt="Matrix rain / code rain animation" width="1000"/>
+</p>
 </p>
 
 <h1 align="center">👋 Hi, I'm Ievgen (Jack) Bondarenko</h1>
