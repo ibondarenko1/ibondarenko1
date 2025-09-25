@@ -1,7 +1,7 @@
-<!-- ===== Banner (GIF) ===== -->
+<!-- ========= Neon Circuit Banner ========= -->
 <p align="center">
-  <!-- ЗАЛЕЙ profile-banner.gif в этот репозиторий и используй относительный путь -->
- <img src="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif" width="1000"/>
+  <!-- Положи GIF в репозиторий (см. инструкции ниже) и укажи правильный путь -->
+  <img src="assets/circuit-banner.gif" alt="Neon circuit animation" width="100%"/>
 </p>
 
 <h1 align="center">👋 Hi, I'm Ievgen (Jack) Bondarenko</h1>
@@ -21,10 +21,11 @@
 
 ## 🛡 Cybersecurity Projects
 - 🔥 **Firewall Rules Lab** — Configuring and testing advanced Windows Firewall rules  
-- 🌐 **IPv4 Network Config** — Hands-on lab for configuring IP and testing connectivity  
-- 📊 **Elastic + Kibana Demo** — Collecting and visualizing logs  
-- 📝 **Incident Report Template** — Example SOC incident investigation report  
-- ⚡ **PowerShell Scripts** — Basic automation in Windows (logs, networking commands)  
+  https://github.com/ibondarenko1/Firewall-Rules-Lab
+- 🌐 **IPv4 Network Config** — Hands-on lab for configuring IP and testing connectivity *(coming soon)*  
+- 📊 **Elastic + Kibana Demo** — Collecting and visualizing logs *(coming soon)*
+- 📝 **Incident Report Template** — Example SOC incident investigation report *(coming soon)*
+- ⚡ **PowerShell Scripts** — Basic automation in Windows (logs, networking commands) *(coming soon)*
 
 ---
 
@@ -51,11 +52,7 @@
 
 ---
 
-<!-- Если твой GIF пока не загружен, раскомментируй временно тестовый баннер ниже:
-<p align="center">
-  <img src="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif" alt="Matrix rain" width="1000"/>
-</p>
--->
+*Thanks for visiting my profile! Always open to collaboration and new projects.*
 </p>
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ibondarenko1&layout=compact&theme=radical" alt="Top Languages" />
