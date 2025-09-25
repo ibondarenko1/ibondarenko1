@@ -1,7 +1,6 @@
 <p align="center">
-  <img src="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif" alt="Matrix Code Rain" width="1000"/>
+  <img src="https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/profile-banner.gif" alt="Cybersecurity Banner" width="1000"/>
 </p>
-
 ## 🚀 About Me
 - 🌎 Based in **Roseville, California, USA**
 - 🎓 Bachelor's Degree from **National Metallurgical Academy of Ukraine**
