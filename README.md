@@ -1,7 +1,7 @@
 <!-- ===== Banner (GIF) ===== -->
 <p align="center">
   <!-- ЗАЛЕЙ profile-banner.gif в этот репозиторий и используй относительный путь -->
-  <img src="assets/profile-banner.gif" alt="Cybersecurity Banner" width="1000"/>
+ <img src="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif" width="1000"/>
 </p>
 
 <h1 align="center">👋 Hi, I'm Ievgen (Jack) Bondarenko</h1>
