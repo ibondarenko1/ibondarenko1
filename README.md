@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/coding.gif" alt="Coding animation" width="600">
+  <img src="assets/coding.gif" alt="Coding animation" width="400">
 </p>
 <h1 align="center">👋 Hi, I'm Ievgen (Jack) Bondarenko</h1>
 <h3 align="center">Aspiring SOC Analyst · Cybersecurity Student · IT Enthusiast</h3>
