@@ -20,10 +20,10 @@
 
 ## 🔐 Cybersecurity Projects  
 - 🔥 [Firewall Rules Lab](https://github.com/ibondarenko1/Firewall-Rules-Lab) — Configuring and testing advanced Windows Firewall rules  
-- 🌐 IPv4 Network Config — Hands-on lab for configuring IP and testing connectivity *(coming soon)*  
-- 📊 Elastic + Kibana Demo — Collecting and visualizing logs *(coming soon)*  
-- 📝 Incident Report Template — Example SOC incident investigation report *(coming soon)*  
-- ⚡ PowerShell Scripts — Basic automation in Windows *(coming soon)*  
+- 🌐 IPv4 Network Config — Hands-on lab for configuring IP and testing connectivity   
+- 📊 Elastic + Kibana Demo — Collecting and visualizing logs  
+- 📝 Incident Report Template — Example SOC incident investigation report 
+- ⚡ PowerShell Scripts — Basic automation in Windows 
 
 ---
 
