@@ -4,7 +4,7 @@
 </p>
 
 # 👋 Hi, I'm Ievgen (Jack) Bondarenko  
-**Aspiring SOC Analyst · Cybersecurity Student · IT Enthusiast**
+**Aspiring SOC Analyst · Cybersecurity  · IT Enthusiast**
 
 ---
 
@@ -14,7 +14,7 @@
 - 🎓 Currently studying **IT & Cybersecurity at Sierra College**  
 - 🛡 Working toward **CompTIA Security+** certification  
 - 🧰 Building a **home SOC lab** using *Kali Linux, Windows, Elastic, and Kibana*  
-- 🎯 Goal: Begin as a **SOC Analyst (Tier 1)** and grow into **MSSP / SOC-as-a-Service**
+- 🎯 Goal: Begin as a **SOC Analyst** and grow into **MSSP / SOC-as-a-Service**
 
 ---
 
