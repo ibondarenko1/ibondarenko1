@@ -12,14 +12,14 @@
 - 🌍 Based in **Roseville, California, USA**  
 - 🎓 Bachelor's Degree — *National Metallurgical Academy of Ukraine*  
 - 🎓 Currently studying **IT & Cybersecurity at Sierra College**  
-- 🛡 Working toward **CompTIA Security+** certification  
+- 🛡 **CompTIA Security+** certification  
 - 🧰 Building a **home SOC lab** using *Kali Linux, Windows, Elastic, and Kibana*  
 - 🎯 Goal: Begin as a **SOC Analyst** and grow into **MSSP / SOC-as-a-Service**
 
 ---
 
 ## 🔐 Cybersecurity Projects  
-- 🔥 [Firewall Rules Lab](https://github.com/ibondarenko1/Firewall-Rules-Lab) — Advanced Windows Firewall configuration and testing  
+- 🔥 Advanced Windows Firewall configuration and testing  
 - 🌐 IPv4 Network Configuration — Practical networking and subnetting exercises  
 - 📊 Elastic & Kibana Demo — Log collection, visualization, and security event analysis  
 - 📝 Incident Report Template — Standardized SOC investigation report structure  
@@ -41,8 +41,8 @@
 ---
 
 ## 📜 Certifications & Learning Path  
-- 🎯 CompTIA **Security+ (in progress)**  
-- ☁ AWS **Cloud Practitioner (planned)**  
+- 🎯 CompTIA **Security+   
+- ☁ AWS **Cloud Practitioner (planned)** 
 - ☁ Microsoft **Azure Fundamentals (planned)**  
 
 ---
