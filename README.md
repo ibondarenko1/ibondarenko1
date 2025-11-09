@@ -82,10 +82,13 @@ Open to:
 
 ---
 
-## 📜 Certifications & Learning Path  
-- 🎯 CompTIA **Security+   
-- ☁ AWS **Cloud Practitioner (planned)** 
-- ☁ Microsoft **Azure Fundamentals (planned)**  
+---
+
+## 🧾 Compliance & Assurance Capabilities
+- HIPAA Security Rule Readiness
+- NIST 800-171 Level 1 Self-Attestation
+- SOC 2 Type I / Type II Readiness Guidance
+- Vendor Risk & Security Program Documentation
 
 ---
 
@@ -105,9 +108,7 @@ Open to:
 ## 🌐 Connect with Me  
 - 💼 [LinkedIn](https://www.linkedin.com/in/ievgen-jack-bondarenko-b13098241/)  
 - 🐙 [GitHub Portfolio](https://github.com/ibondarenko1)  
-- 🛡 [LetsDefend Profile](https://app.letsdefend.io/leaderboard)  
-- 🔐 TryHackMe *(coming soon)*  
-- ✍ Medium Blog *(coming soon)*  
+
 
 ---
 
