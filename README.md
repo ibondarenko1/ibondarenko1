@@ -4,7 +4,7 @@
 </p>
 
 <!-- Header -->
-<h1 align="center">Evgeniy (Jack) Bondarenko</h1>
+<h1 align="center">Ievgen (Jack) Bondarenko</h1>
 <p align="center"><strong>Founder & Chief Security Architect — SUMMIT AI TECH</strong></p>
 
 ---
