@@ -74,7 +74,6 @@ Open to:
 ## 📞 Contact
 - **LinkedIn:** https://www.linkedin.com/in/ievgen-jack-bondarenko-b13098241/  
 - **GitHub:** https://github.com/ibondarenko1  
-- **Email:** bond@summitaitech.com  
 
 ---
 
