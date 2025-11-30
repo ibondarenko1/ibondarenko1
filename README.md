@@ -4,79 +4,110 @@
 </p>
 
 <!-- Header -->
-<h1 align="center">Ievgen (Jack) Bondarenko</h1>
-<p align="center"><strong>Founder & Chief Security Architect — SUMMIT AI TECH</strong></p>
+🚀 Ievgen (Jack) Bondarenko
+Founder — AI-Driven Compliance Automation Platform (Stealth Mode)
 
----
+(Open to CTO co-founder for acceleration & launch)
 
-## 🌐 About
-I lead the architecture and development of **SUMMIT AI TECH**, an **AI-driven SOC-as-a-Service** platform designed for **SMB, healthcare, legal, and municipal organizations**.
+🌐 About
 
-My focus is on building **scalable, multi-tenant security operations** with:
+I’m building a next-generation AI-powered compliance automation platform aimed at transforming how small and mid-size organizations achieve and maintain:
 
-- **Elastic Stack (SIEM)**
-- **Wazuh (EDR / HIDS)**
-- **SOAR Workflow Automation**
-- **AI-Assisted Alert Triage & Case Narratives**
-- **Compliance Readiness & Reporting (HIPAA / NIST / SOC 2)**
+NIST 800-171 L1/L2
 
-The goal is to deliver **continuous monitoring, incident response, and regulatory compliance** as a managed service.
+SOC 2 Type I / II
 
----
+HIPAA Security Rule
 
-## 🏛 SOC Platform Architecture (High-Level)
+Vendor Risk & Security Program Requirements
 
+The platform leverages multi-agent AI orchestration to automate:
 
----
+Gap assessment
 
+Control generation
 
----
+Audit evidence collection
 
-## 🔍 Core Focus Areas
+Policy creation
 
-| Domain | Description |
-|-------|-------------|
-| SOC Architecture | Multi-tenant SIEM/EDR pipelines, scalable deployments |
-| Security Operations | Alert triage, incident response, detection engineering |
-| Automation & AI | L1 offloading, incident summaries, workflow orchestration |
-| Compliance | HIPAA, **NIST 800-171**, SOC 2 readiness frameworks |
+Ticketing & remediation workflows
 
----
+Continuous compliance monitoring
 
-## 🧩 Current Work
-- Building **SUMMIT AI TECH SOC Platform** (Elastic + Wazuh + SOAR)
-- Designing **AI-supported decision layer for alerts**
-- Preparing self-attestation package for **NIST 800-171 L1**
-- Structuring partner onboarding for **MSP networks**
+My goal is to make compliance faster, cheaper, and dramatically simpler for SMBs, MSPs, and regulated sectors.
 
----
+🧭 Current Mission
 
-## 🛠 Technology Stack
+Preparing a full concept package for accelerator submission (Y-Combinator / Alchemist).
 
-<p>
-  <img src="https://img.shields.io/badge/SIEM-Elastic%20%7C%20Kibana-orange?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/EDR%20%2F%20HIDS-Wazuh-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/SOAR-Automation%20%7C%20API%20Integrations-green?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Orchestration-AI%20%7C%20LLM-purple?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Compliance-HIPAA%20%7C%20NIST%20%7C%20SOC2-lightgrey?style=for-the-badge" />
-</p>
+Searching for a strong CTO co-founder to lead the engineering vision.
 
----
+Building a validated problem-solution framework with early customers (clinics, law firms, MSPs).
 
-## 🤝 Collaboration & Partnerships
-Open to:
-- **MSP partner networks**
-- **Security compliance service alignment**
-- **Pilot deployments for SMB / clinics / legal firms / municipalities**
+Designing an AI architecture around multi-agent workflows for compliance automation.
 
----
+🧩 What I’m Building
 
-## 📞 Contact
-- **LinkedIn:** https://www.linkedin.com/in/ievgen-jack-bondarenko-b13098241/  
-- **GitHub:** https://github.com/ibondarenko1  
+A SaaS platform where AI agents handle the heavy compliance work.
+Core pillars include:
 
----
+AI Gap Assessment Engine
 
+AI Policy & Documentation Generator
+
+Continuous Control Monitoring
+
+Automated Evidence Collection
+
+Risk Register & Remediation Tracking
+
+Client-Ready Reports (Audit-Grade)
+
+🏗 Background & Expertise
+
+Before starting this venture, I spent years working in:
+
+Domain	Focus
+Security Architecture	Real-world SOC/SIEM/EDR deployments
+Compliance	NIST, HIPAA, SOC 2 readiness frameworks
+Automation	SOAR, LLM-agent orchestration, workflows
+Risk & Governance	Policies, IRP, vendor risk, DRP/BCP
+
+This background shaped the vision for the platform:
+give all companies the compliance capabilities usually reserved for enterprise.
+
+🛠 Tech Direction
+
+The platform concept includes:
+
+AI agents (orchestrator + specialist agents)
+
+Evidence automation through secure connectors
+
+SOC2/NIST mapping logic
+
+Multi-tenant workspace design
+
+Secure cloud architecture (Azure / AWS)
+
+🤝 Looking to Connect With
+
+Senior engineers interested in CTO/co-founder roles
+
+Compliance professionals (ISO/NIST/SOC2 auditors)
+
+MSP/MSSP leaders open to early pilot programs
+
+Investors and accelerator partners
+
+📞 Contact
+
+LinkedIn: https://www.linkedin.com/in/ievgen-jack-bondarenko-b13098241/
+
+GitHub: https://github.com/ibondarenko1
+
+<p align="center"><strong>“Compliance shouldn’t be a burden. It should be automated.”</strong></p>
 <p align="center"><strong>“Secure systems. Confident clients. Scalable operations.”</strong></p>
 
 ---
