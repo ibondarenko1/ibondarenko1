@@ -41,7 +41,6 @@ My goal is to make compliance faster, cheaper, and dramatically simpler for SMBs
 
 Preparing a full concept package for accelerator submission (Y-Combinator / Alchemist).
 
-Searching for a strong CTO co-founder to lead the engineering vision.
 
 Building a validated problem-solution framework with early customers (clinics, law firms, MSPs).
 
