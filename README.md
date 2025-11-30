@@ -7,7 +7,7 @@
 🚀 Ievgen (Jack) Bondarenko
 Founder — AI-Driven Compliance Automation Platform (Stealth Mode)
 
-(Open to CTO co-founder for acceleration & launch)
+
 
 🌐 About
 
@@ -93,7 +93,6 @@ Secure cloud architecture (Azure / AWS)
 
 🤝 Looking to Connect With
 
-Senior engineers interested in CTO/co-founder roles
 
 Compliance professionals (ISO/NIST/SOC2 auditors)
 
