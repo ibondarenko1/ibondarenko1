@@ -13,7 +13,7 @@ I work at the intersection of cybersecurity, automation, and compliance engineer
 
 My background includes hands-on work with:
 
-SOC / SIEM pipelines.....
+SOC / SIEM pipelines......
 
 security operations
 
