@@ -51,7 +51,7 @@ SIEM/EDR integrations
 
 risk & governance processes
 
-🛠 Skills & Tools z
+🛠 Skills & Tools 
 
 <p> <img src="https://img.shields.io/badge/OS-Windows-blue?logo=windows&logoColor=white" /> <img src="https://img.shields.io/badge/OS-Kali%20Linux-blue?logo=linux&logoColor=white" /> <img src="https://img.shields.io/badge/SIEM-Elastic%20%7C%20Kibana-orange?logo=elastic&logoColor=white" /> <img src="https://img.shields.io/badge/Scripting-PowerShell-blue?logo=powershell&logoColor=white" /> <img src="https://img.shields.io/badge/Networking-Wireshark-blue?logo=wireshark&logoColor=white" /> <img src="https://img.shields.io/badge/Automation-GitHub%20Actions-black?logo=githubactions&logoColor=white" /> <img src="https://img.shields.io/badge/Cloud-AWS%20%7C%20Azure-lightblue?logo=cloud&logoColor=white" /> </p>
 
