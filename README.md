@@ -7,7 +7,7 @@
 
 Security Architect • AI Automation • Compliance Engineering
 
-🌐 About Me..
+🌐 About Me
 
 I work at the intersection of cybersecurity, automation, and compliance engineering, focusing on how AI can simplify security requirements for small and mid-size organizations.
 
