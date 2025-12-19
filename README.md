@@ -9,13 +9,9 @@ Security Architect • AI Automation • Compliance Engineering
 
 🌐 About Me
 
-I work at the intersection of cybersecurity, automation, and compliance engineering, focusing on how AI can simplify security requirements for small and mid-size organizations.
+I work at the intersection of cybersecurity, automation, and compliance engineering, with a focus on regulated environments such as healthcare, MSPs, and other compliance-driven organizations.
 
-My background includes hands-on work with:
-
-SOC / SIEM pipelines
-
-security operations
+My goal is to simplify security and compliance requirements through practical automation and architecture.
 
 compliance readiness (HIPAA, NIST, SOC2)
 
