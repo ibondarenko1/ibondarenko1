@@ -1,6 +1,6 @@
 <!-- Banner Animation -->
 <p align="center">
-  <img src="https://camo.githubusercontent.com/57a217924d98218b28a5e97b561a272415ddf9c2f99912929777d928c1332501/68747470733a2f2f7777772e6469676974616c736f6c7574696f6e73657276696365732e636f6d2f696d672f73657276696365732f77656273697465312e676966" width="600"/>
+  <img src="https://www.digitalsolutionservices.com/img/services/website1.gif" width="600" />
 </p>
 
 🚀 Ievgen (Jack) Bondarenko
