@@ -39,12 +39,6 @@ Compliance frameworks: HIPAA · NIST CSF · ISO 27001 · PCI DSS · SOC 2
 📜 Certifications
 <p>
   <img src="https://img.shields.io/badge/ISO_27001-Lead_Auditor-00457C?style=flat-square" />
-  <img src="https://img.shields.io/badge/ISO_27701-Lead_Auditor-00457C?style=flat-square" />
-  <img src="https://img.shields.io/badge/ISO_27017-Lead_Auditor-00457C?style=flat-square" />
-  <img src="https://img.shields.io/badge/ISO_27018-Lead_Auditor-00457C?style=flat-square" />
-  <img src="https://img.shields.io/badge/PCI-QSA-B22222?style=flat-square" />
-  <img src="https://img.shields.io/badge/DORA-Certified-6A0DAD?style=flat-square" />
-  <img src="https://img.shields.io/badge/CEH-Certified_Ethical_Hacker-228B22?style=flat-square" />
   <img src="https://img.shields.io/badge/CompTIA-Security%2B-FF0000?style=flat-square&logo=comptia&logoColor=white" />
 </p>
 
