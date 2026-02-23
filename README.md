@@ -69,7 +69,7 @@ Compliance frameworks: HIPAA · NIST CSF · ISO 27001 · PCI DSS · SOC 2
   <img src="https://img.shields.io/badge/Python-Flask-darkgreen?style=flat-square&logo=python&logoColor=white" />
   <img src="https://img.shields.io/badge/Frontend-React%20TypeScript-61DAFB?style=flat-square&logo=react&logoColor=black" />
 </p>
-https://github-readme-stats.vercel.app/api?username=ibondarenko1&show_icons=true&theme=dark&hide_border=true
+
 🤝 Let's Connect
 I'm open to collaboration, technical discussions, and connecting with people working in cybersecurity, compliance, or AI automation.
 🔗 LinkedIn: ievgen-jack-bondarenko
