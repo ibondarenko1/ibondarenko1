@@ -12,8 +12,7 @@ This GitHub reflects hands-on R&D work supporting my role as a Security Architec
 
 The core of everything I build.
 
-A full-stack SaaS platform that automates HIPAA compliance assessments for healthcare organizations, MSPs, and clinics. Built with React TypeScript frontend and a compliance-driven backend architecture.
-What it does:
+
 
 🏥 Automated HIPAA readiness assessments with control mapping
 🤖 AI-assisted evidence collection and audit trail generation
