@@ -8,8 +8,7 @@ Security Architect & Compliance Advisor
 Designing Audit-Ready Security and Compliance Operations for Regulated Environments
 This GitHub reflects hands-on R&D work supporting my role as a Security Architect and Compliance Advisor. Repositories here focus on prototyping, automation experiments, and reference architectures used to design and validate audit-ready, compliance-driven security solutions for regulated organizations.
 
-🔥 Featured Project
-hipaa-saas — AI-Driven HIPAA Readiness Assessment Platform
+
 
 The core of everything I build.
 
