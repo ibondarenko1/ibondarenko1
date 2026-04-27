@@ -3,59 +3,45 @@
   <img src="https://www.digitalsolutionservices.com/img/services/website1.gif" width="600" />
 </p>
 
-🚀 Ievgen (Jack) Bondarenko
-Security Architect & Compliance Advisor
-Designing Audit-Ready Security and Compliance Operations for Regulated Environments
-This GitHub reflects hands-on R&D work supporting my role as a Security Architect and Compliance Advisor. Repositories here focus on prototyping, automation experiments, and reference architectures used to design and validate audit-ready, compliance-driven security solutions for regulated organizations.
+![header](https://www.digitalsolutionservices.com/img/services/website1.gif)
 
+# Ievgen (Jack) Bondarenko
 
+**Security Researcher & Compliance Advisor**
 
-The core of everything I build.
+I came to security through compliance — frameworks, audits, the long documents that describe what should be true. I stayed because the code describes what is, and the gap between the two is where the interesting work lives.
 
+These days I spend most of my time reading implementations against their specifications. I look for the edge case that nobody wrote a test for, the assumption that holds everywhere except in one narrow window. When something survives review, I send it upstream.
 
+I'm a researcher by temperament more than by title. I read more than I write, write more than I publish, and try to keep the ratio honest. The good bugs tend to be quiet — they sit between two lines that both look correct, and they reward patience over cleverness.
 
-🏥 Automated HIPAA readiness assessments with control mapping
-🤖 AI-assisted evidence collection and audit trail generation
-📋 Policy & documentation generation aligned to HIPAA safeguards
-📊 Continuous compliance monitoring dashboard for MSPs and clinics
-🔗 Multi-framework control alignment (HIPAA · NIST CSF · ISO 27001 · SOC 2)
+## 🌐 About Me
 
-Stack: React · TypeScript · Python · REST API · PostgreSQL
+I work at the intersection of cybersecurity, low-level systems, and compliance engineering. Most of my professional work has been in regulated environments — healthcare, financial services, MSPs, legal firms — where the question is not whether controls exist, but whether they hold up when something unusual arrives at the door.
 
-🌐 About Me
-I work at the intersection of cybersecurity, automation, and compliance engineering, with a focus on regulated environments — healthcare, MSPs, legal firms, and other compliance-driven organizations.
-🏢 Director of Security & Compliance Advisory @ Summit Range Consulting (WOSB-Certified)
-My goal is to simplify security and compliance requirements through practical automation and repeatable security architectures:
+## 🔧 What I'm Currently Working On
 
-Compliance readiness and control alignment (HIPAA, NIST, ISO 27001, SOC 2, PCI DSS)
-Automation of evidence collection, control mapping, and security documentation workflows
-Building tools that reduce complexity and make security processes more accessible and efficient
+Reading code in places that are supposed to be safe. Container runtimes, protocol stacks, syscall layers. Writing notes. Sending small patches upstream when they survive review.
 
+On the compliance side, I keep returning to one question: how does runtime evidence — what the system actually does under load — map back to the controls auditors ask about. Most frameworks describe intent. The interesting work is closing the distance between intent and behavior.
 
-🔧 What I'm Currently Working On
-An AI-driven compliance automation R&D initiative focused on:
+## 🎯 Focus Areas
 
-Multi-agent architectures for compliance orchestration
-Automated evidence collection and audit traceability
-Control mapping and policy/documentation generation
-Continuous compliance monitoring for MSPs, clinics, and legal firms
+- Container and sandbox runtime internals
+- Protocol parsers and the state machines around them
+- Race conditions, TOCTOU, and the windows where they hide
+- Fuzzing and differential testing
+- Compliance frameworks: HIPAA · NIST CSF · ISO 27001 · PCI DSS · SOC 2
 
+## 📜 Certifications
 
-🎯 Focus Areas
-
-Cybersecurity architecture & risk governance
-AI-assisted workflow automation for compliance and security operations
-SIEM/EDR integrations (Elastic | Kibana)
-Compliance frameworks: HIPAA · NIST CSF · ISO 27001 · PCI DSS · SOC 2
-
-
-📜 Certifications
 <p>
   <img src="https://img.shields.io/badge/ISO_27001-Lead_Auditor-00457C?style=flat-square" />
   <img src="https://img.shields.io/badge/CompTIA-Security%2B-FF0000?style=flat-square&logo=comptia&logoColor=white" />
 </p>
 
-🛠 Skills & Tools
+## 🛠 Skills & Tools
+
 <p>
   <img src="https://img.shields.io/badge/OS-Windows-blue?style=flat-square&logo=windows&logoColor=white" />
   <img src="https://img.shields.io/badge/OS-Kali%20Linux-blue?style=flat-square&logo=linux&logoColor=white" />
@@ -68,8 +54,9 @@ Compliance frameworks: HIPAA · NIST CSF · ISO 27001 · PCI DSS · SOC 2
   <img src="https://img.shields.io/badge/Frontend-React%20TypeScript-61DAFB?style=flat-square&logo=react&logoColor=black" />
 </p>
 
-🤝 Let's Connect
-I'm open to collaboration, technical discussions, and connecting with people working in cybersecurity, compliance, or AI automation.
-🔗 LinkedIn: ievgen-jack-bondarenko
-🐙 GitHub: ibondarenko1
-🏢 Company: Summit Range Consulting
+## 🤝 Let's Connect
+
+Open to technical conversations and collaboration with people working in low-level security, protocol research, or compliance engineering.
+
+🔗 LinkedIn: [ievgen-jack-bondarenko](https://www.linkedin.com/in/ievgen-jack-bondarenko-b13098241/)
+🐙 GitHub: [ibondarenko1](https://github.com/ibondarenko1)
