@@ -1,8 +1,3 @@
-<!-- Banner Animation -->
-<p align="center">
-  <img src="https://www.digitalsolutionservices.com/img/services/website1.gif" width="600" />
-</p>
-
 ![header](https://www.digitalsolutionservices.com/img/services/website1.gif)
 
 # Ievgen (Jack) Bondarenko
