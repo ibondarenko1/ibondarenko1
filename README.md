@@ -41,6 +41,11 @@ On the compliance side, I keep returning to one question: how does runtime evide
   <img src="https://img.shields.io/badge/OS-Windows-blue?style=flat-square&logo=windows&logoColor=white" />
   <img src="https://img.shields.io/badge/OS-Kali%20Linux-blue?style=flat-square&logo=linux&logoColor=white" />
   <img src="https://img.shields.io/badge/SIEM-Elastic%20%7C%20Kibana-orange?style=flat-square&logo=elastic&logoColor=white" />
+  <img src="https://img.shields.io/badge/SIEM-Security%20Onion%202.4-3D5A80?style=flat-square&logoColor=white" />
+  <img src="https://img.shields.io/badge/HIDS-Wazuh-005377?style=flat-square&logoColor=white" />
+  <img src="https://img.shields.io/badge/IDS-Suricata-FF6900?style=flat-square&logoColor=white" />
+  <img src="https://img.shields.io/badge/NSM-Zeek-2596be?style=flat-square&logoColor=white" />
+  <img src="https://img.shields.io/badge/Framework-MITRE%20ATT%26CK-CC0000?style=flat-square&logoColor=white" />
   <img src="https://img.shields.io/badge/Scripting-PowerShell-blue?style=flat-square&logo=powershell&logoColor=white" />
   <img src="https://img.shields.io/badge/Networking-Wireshark-blue?style=flat-square&logo=wireshark&logoColor=white" />
   <img src="https://img.shields.io/badge/Automation-GitHub%20Actions-black?style=flat-square&logo=githubactions&logoColor=white" />
