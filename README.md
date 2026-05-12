@@ -61,5 +61,5 @@ On the compliance side, I keep returning to one question: how does runtime evide
 
 Open to technical conversations and collaboration with people working in low-level security, protocol research, or compliance engineering.
 
-🔗 LinkedIn: [ievgen-jack-bondarenko](https://www.linkedin.com/in/ievgen-jack-bondarenko-b13098241/)
+🔗 LinkedIn: [ievgen-jack-bondarenko](https://www.linkedin.com/in/ievgen-bondarenko-b13098241/)
 🐙 GitHub: [ibondarenko1](https://github.com/ibondarenko1)
