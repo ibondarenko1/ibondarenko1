@@ -8,8 +8,6 @@
 
 ![Metrics](https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/github-metrics.svg)
 
-![Achievements](https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/github-metrics-achievements.svg)
-
 ![Commit heatmap](https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/github-metrics-isocalendar.svg)
 
 </details>
