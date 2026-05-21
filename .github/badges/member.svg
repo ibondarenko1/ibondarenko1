@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="64" viewBox="0 0 480 64">
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .title { fill: #c0c0c0; font-weight: 700; font-size: 16px; }
+    .sub { fill: #6e7681; font-size: 13px; }
+    .tier { fill: #cd7f32; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+  </style>
+  <rect width="480" height="64" rx="8" fill="#0d1117"/>
+  <circle cx="32" cy="32" r="24" fill="#c0c0c0"/>
+  <g transform="translate(16,16)"><path fill="#fff" d="M7.467.133a1.75 1.75 0 011.066 0l5.25 1.68A1.75 1.75 0 0115 3.48V7c0 1.566-.32 3.182-1.303 4.682-.983 1.498-2.585 2.813-5.032 3.855a1.7 1.7 0 01-1.33 0c-2.447-1.042-4.049-2.357-5.032-3.855C1.32 10.182 1 8.566 1 7V3.48a1.75 1.75 0 011.217-1.667l5.25-1.68z"/></g>
+  <text x="72" y="28" class="title">Member member</text>
+  <text x="72" y="46" class="sub">Registered less than 1 year ago</text>
+  <text x="470" y="20" class="tier" text-anchor="end">BRONZE</text>
+</svg>
