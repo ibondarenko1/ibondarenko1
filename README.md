@@ -28,6 +28,27 @@ On the compliance side, I keep returning to one question: how does runtime evide
 - Fuzzing and differential testing
 - Compliance frameworks: HIPAA · NIST CSF · ISO 27001 · PCI DSS · SOC 2
 
+## 📈 Upstream patches that survived review
+
+I've been on GitHub since August 2025. Below are the projects where at least one change landed in `main` after maintainer review. Quality varies — some are hardening contributions, some test extensions, some close concrete security findings.
+
+| Project | Merged | Surface |
+|---|---|---|
+| [google/gvisor](https://github.com/google/gvisor/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged) | 6 | netstack, lisafs, conntrack, TCP RFC 5961 hardening |
+| [google/bumble](https://github.com/google/bumble/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged) | 3 | Bluetooth stack |
+| [tink-crypto/tink-py](https://github.com/tink-crypto/tink-py/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged) | 1 | cryptographic primitives test coverage |
+| [google/osv-scanner](https://github.com/google/osv-scanner/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged) | 1 | supply-chain scanning |
+| [swiftlang/swift-package-manager](https://github.com/swiftlang/swift-package-manager/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged) | 1 | package manager |
+
+Most of what I send up doesn't land; that's normal for drive-by hardening on unfamiliar code. The merged ones are linked above, and the full opened-vs-merged ratio is at [github.com/ibondarenko1?tab=pull_requests](https://github.com/ibondarenko1?tab=pull_requests).
+
+Coordinated security disclosures (CVE / GHSA assigned through vendor channels) span vLLM, BentoML, harbor, langchain, llama_index, autogen, MSAL, and several others — handled via each vendor's private security flow rather than public issue trackers.
+
+<p>
+  <img src="https://github-readme-stats.vercel.app/api?username=ibondarenko1&show_icons=true&hide=stars&theme=dark&include_all_commits=false&hide_border=true" alt="GitHub stats" height="170" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ibondarenko1&layout=compact&theme=dark&hide_border=true" alt="Top languages" height="170" />
+</p>
+
 ## 📜 Certifications
 
 <p>
