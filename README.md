@@ -41,7 +41,7 @@ On the compliance side, I keep returning to one question: how does runtime evide
 ## 📜 Certifications
 
 <p>
-  <img src="https://img.shields.io/badge/ISO_27001-Lead_Auditor-00457C?style=flat-square" />
+ 
   <img src="https://img.shields.io/badge/CompTIA-Security%2B-FF0000?style=flat-square&logo=comptia&logoColor=white" />
 </p>
 
