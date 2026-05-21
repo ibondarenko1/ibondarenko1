@@ -10,15 +10,7 @@ These days I spend most of my time reading implementations against their specifi
 
 I'm a researcher by temperament more than by title. I read more than I write, write more than I publish, and try to keep the ratio honest. The good bugs tend to be quiet  they sit between two lines that both look correct, and they reward patience over cleverness.
 
-## 🏆 Achievements
 
-<p>
-  <img src="https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/.github/badges/contributor.svg" alt="Master contributor" />
-  <img src="https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/.github/badges/developer.svg" alt="Master developer" />
-  <img src="https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/.github/badges/forker.svg" alt="Master forker" />
-  <img src="https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/.github/badges/polyglot.svg" alt="Super polyglot" />
-  <img src="https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/.github/badges/member.svg" alt="Member" />
-</p>
 
 ## 🌐 About Me
 
