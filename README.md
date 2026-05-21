@@ -30,6 +30,43 @@ On the compliance side, I keep returning to one question: how does runtime evide
 - Fuzzing and differential testing
 - Compliance frameworks: HIPAA · NIST CSF · ISO 27001 · PCI DSS · SOC 2
 
+## 🛡 Published CVEs & Advisories
+
+Four High-severity CVEs in [InternLM/lmdeploy](https://github.com/InternLM/lmdeploy), an LLM serving framework.
+
+| CVE | Severity | Vulnerability |
+|-----|----------|---------------|
+| [CVE-2025-67729](https://github.com/advisories/GHSA-9pf3-7rrr-x5jh) | High | Arbitrary code execution via insecure deserialization in `torch.load()` |
+| [CVE-2026-33626](https://github.com/advisories/GHSA-6w67-hwm5-92mq) | High | Server-side request forgery via vision-language image loading |
+| [CVE-2026-46432](https://github.com/advisories/GHSA-m549-qq94-fvhg) | High | Arbitrary code execution via hardcoded `trust_remote_code=True` |
+| [CVE-2026-46517](https://github.com/advisories/GHSA-9xq9-36w5-q796) | High | Unsafe remote-code load path with no user opt-out |
+
+## 🔼 Upstream Contributions
+
+12 merged pull requests across 5 production open-source projects, focused on memory-safety, DoS hardening, and protocol validation.
+
+**[google/gvisor](https://github.com/google/gvisor)** - container runtime / application kernel
+- [#13181](https://github.com/google/gvisor/pull/13181) - stack: document conntrack seed regen requirement on iptables S/R
+- [#13165](https://github.com/google/gvisor/pull/13165) - tcp: strict RFC 5961 RST sequence validation
+- [#13153](https://github.com/google/gvisor/pull/13153) - lisafs: reject FRemoveXattr on deleted files
+- [#13015](https://github.com/google/gvisor/pull/13015) - systrap: hold sysmsgThreadsMu around map read in switchToApp
+- [#12927](https://github.com/google/gvisor/pull/12927) - systrap: fix TOCTOU on ThreadID in NotifyInterrupt
+- [#12925](https://github.com/google/gvisor/pull/12925) - tun: empty-data check before slice index in TUN Write()
+
+**[google/bumble](https://github.com/google/bumble)** - Bluetooth protocol stack
+- [#918](https://github.com/google/bumble/pull/918) - avdtp: bound message assembler to drop truncated PDUs (DoS prevention)
+- [#914](https://github.com/google/bumble/pull/914) - sdp: bound DataElement parse recursion to prevent RecursionError DoS
+- [#912](https://github.com/google/bumble/pull/912) - input validation to prevent remote crash from empty/malformed input
+
+**[swiftlang/swift-package-manager](https://github.com/swiftlang/swift-package-manager)** - Apple, Swift toolchain
+- [#10001](https://github.com/swiftlang/swift-package-manager/pull/10001) - registry: reject extracted archives with escaping symlinks
+
+**[tink-crypto/tink-py](https://github.com/tink-crypto/tink-py)** - Google cryptography library
+- [#76](https://github.com/tink-crypto/tink-py/pull/76) - jwt: reject JWK Sets with duplicate JSON keys
+
+**[google/osv-scanner](https://github.com/google/osv-scanner)** - vulnerability scanner
+- [#2748](https://github.com/google/osv-scanner/pull/2748) - correct misleading docstrings in scalibrextract extractors
+
 ## 📜 Certifications
 
 <p>
