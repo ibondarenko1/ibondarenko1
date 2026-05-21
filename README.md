@@ -4,11 +4,11 @@
 
 **Security Researcher & Compliance Advisor**
 
-I came to security through compliance — frameworks, audits, the long documents that describe what should be true. I stayed because the code describes what is, and the gap between the two is where the interesting work lives.
+I came to security through compliance  frameworks, audits, the long documents that describe what should be true. I stayed because the code describes what is, and the gap between the two is where the interesting work lives.
 
 These days I spend most of my time reading implementations against their specifications. I look for the edge case that nobody wrote a test for, the assumption that holds everywhere except in one narrow window. When something survives review, I send it upstream.
 
-I'm a researcher by temperament more than by title. I read more than I write, write more than I publish, and try to keep the ratio honest. The good bugs tend to be quiet — they sit between two lines that both look correct, and they reward patience over cleverness.
+I'm a researcher by temperament more than by title. I read more than I write, write more than I publish, and try to keep the ratio honest. The good bugs tend to be quiet  they sit between two lines that both look correct, and they reward patience over cleverness.
 
 ## 🏆 Achievements
 
@@ -22,13 +22,13 @@ I'm a researcher by temperament more than by title. I read more than I write, wr
 
 ## 🌐 About Me
 
-I work at the intersection of cybersecurity, low-level systems, and compliance engineering. Most of my professional work has been in regulated environments — healthcare, financial services, MSPs, legal firms — where the question is not whether controls exist, but whether they hold up when something unusual arrives at the door.
+I work at the intersection of cybersecurity, low-level systems, and compliance engineering. Most of my professional work has been in regulated environments  healthcare, financial services, MSPs, legal firms  where the question is not whether controls exist, but whether they hold up when something unusual arrives at the door.
 
 ## 🔧 What I'm Currently Working On
 
 Reading code in places that are supposed to be safe. Container runtimes, protocol stacks, syscall layers. Writing notes. Sending small patches upstream when they survive review.
 
-On the compliance side, I keep returning to one question: how does runtime evidence — what the system actually does under load — map back to the controls auditors ask about. Most frameworks describe intent. The interesting work is closing the distance between intent and behavior.
+On the compliance side, I keep returning to one question: how does runtime evidence  what the system actually does under load  map back to the controls auditors ask about. Most frameworks describe intent. The interesting work is closing the distance between intent and behavior.
 
 ## 🎯 Focus Areas
 
