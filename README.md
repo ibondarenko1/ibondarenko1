@@ -4,15 +4,6 @@
 
 **Security Researcher & Compliance Advisor**
 
-<details open><summary>📊 GitHub Metrics (auto-generated)</summary>
-
-![Metrics](https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/github-metrics.svg)
-
-![Commit heatmap](https://raw.githubusercontent.com/ibondarenko1/ibondarenko1/main/github-metrics-isocalendar.svg)
-
-</details>
-
-
 I came to security through compliance — frameworks, audits, the long documents that describe what should be true. I stayed because the code describes what is, and the gap between the two is where the interesting work lives.
 
 These days I spend most of my time reading implementations against their specifications. I look for the edge case that nobody wrote a test for, the assumption that holds everywhere except in one narrow window. When something survives review, I send it upstream.
