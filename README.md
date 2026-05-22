@@ -42,8 +42,7 @@ Four High-severity CVEs in [InternLM/lmdeploy](https://github.com/InternLM/lmdep
 | [CVE-2026-46517](https://github.com/advisories/GHSA-9xq9-36w5-q796) | High | Unsafe remote-code load path with no user opt-out |
 ## 🛡 Hands-On Defense
 
-Security Lead, Sierra College Cyber Defense Competition — led a 5-person 
-blue team through a 48-hour live red team engagement. Hardened a multi-zone 
+Security blue team through a 48-hour live red team engagement. Hardened a multi-zone 
 WAN/DMZ/LAN environment: deployed Security Onion IDS/IPS, Suricata, Zeek, 
 Wazuh HIDS, PFSense firewall rules, honeypots, and automated incident 
 response. Maintained service uptime under sustained attack against a 
