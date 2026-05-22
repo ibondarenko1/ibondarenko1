@@ -40,7 +40,14 @@ Four High-severity CVEs in [InternLM/lmdeploy](https://github.com/InternLM/lmdep
 | [CVE-2026-33626](https://github.com/advisories/GHSA-6w67-hwm5-92mq) | High | Server-side request forgery via vision-language image loading |
 | [CVE-2026-46432](https://github.com/advisories/GHSA-m549-qq94-fvhg) | High | Arbitrary code execution via hardcoded `trust_remote_code=True` |
 | [CVE-2026-46517](https://github.com/advisories/GHSA-9xq9-36w5-q796) | High | Unsafe remote-code load path with no user opt-out |
+## 🛡 Hands-On Defense
 
+Security Lead, Sierra College Cyber Defense Competition — led a 5-person 
+blue team through a 48-hour live red team engagement. Hardened a multi-zone 
+WAN/DMZ/LAN environment: deployed Security Onion IDS/IPS, Suricata, Zeek, 
+Wazuh HIDS, PFSense firewall rules, honeypots, and automated incident 
+response. Maintained service uptime under sustained attack against a 
+NIST + HIPAA baseline.
 ## 🔼 Upstream Contributions
 
 12 merged pull requests across 5 production open-source projects, focused on memory-safety, DoS hardening, and protocol validation.
