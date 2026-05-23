@@ -1,28 +1,33 @@
 #!/usr/bin/env python3
-"""Regenerate the dynamic sections of the GitHub profile README.
+"""Regenerate the dynamic badges block of the GitHub profile README.
 
-Two sections are kept in sync automatically:
+One section is kept in sync automatically:
 
-  * Upstream Contributions - every merged pull request authored by USER in
-    repositories USER does not own, discovered via the GitHub search API.
-  * Published CVEs & Advisories - the advisories listed in data/advisories.json
-    by GHSA id. The advisory listing API does not expose credited users, so the
-    id list is maintained by hand; the CVE id and severity of each are fetched.
+  * BADGES - two clickable shields.io counter badges near the top of
+    the README:
+      - CVEs Published -> GitHub Advisory Database, credit:USER filter.
+                          Counts entries in data/advisories.json. Only
+                          GHSAs where USER is credited as reporter
+                          belong in that file - the badge link goes
+                          straight to the canonical GitHub credit list,
+                          so anything on the badge needs to also appear
+                          there. Update the file when one of your
+                          submitted advisories publishes with credit.
+      - Merged PRs     -> GitHub pull-request search (`is:pr is:merged
+                          author:USER -user:USER`). Count comes from
+                          the search API's total_count, so new merged
+                          PRs auto-bump the badge.
 
-Each section lives between HTML marker comments in README.md:
+The block lives between HTML marker comments in README.md:
 
-  <!-- PRS:START -->  ...  <!-- PRS:END -->
-  <!-- CVES:START --> ...  <!-- CVES:END -->
+  <!-- BADGES:START --> ... <!-- BADGES:END -->
 
-To add a CVE, append one object to data/advisories.json. To add a merged PR,
-do nothing - the next run picks it up. Run locally with a token in
-GITHUB_TOKEN; the workflow passes one in CI.
+Run locally with a token in GITHUB_TOKEN; the workflow passes one in CI.
 """
 import json
 import os
 import re
 import sys
-import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -31,24 +36,6 @@ API = "https://api.github.com"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 README = os.path.join(ROOT, "README.md")
 ADVISORIES = os.path.join(ROOT, "data", "advisories.json")
-
-# Curated one-line repository descriptions. A repository not listed here
-# falls back to the description published by the repository itself.
-REPO_NOTES = {
-    "google/gvisor": "container runtime / application kernel",
-    "google/bumble": "Bluetooth protocol stack",
-    "swiftlang/swift-package-manager": "Apple, Swift toolchain",
-    "tink-crypto/tink-py": "Google cryptography library",
-    "google/osv-scanner": "vulnerability scanner",
-}
-
-# GitHub stores a truncated title for a few early PRs. Override with the
-# intended full title here, keyed by "owner/repo#number".
-PR_TITLE_OVERRIDES = {
-    "google/bumble#912":
-        "fix: add input validation to prevent remote crash "
-        "from empty/malformed input",
-}
 
 
 def api(path):
@@ -64,71 +51,59 @@ def api(path):
         return json.load(resp)
 
 
-def merged_prs():
-    """Every merged PR authored by USER in a repository USER does not own."""
+def merged_prs_count():
+    """Count merged PRs authored by USER in repositories USER does not own.
+
+    Uses the search API's `total_count` field so we do not have to
+    paginate just to count.
+    """
     query = "type:pr author:%s is:merged -user:%s" % (USER, USER)
-    items, page = [], 1
-    while True:
-        url = "%s/search/issues?q=%s&per_page=100&page=%d" % (
-            API, urllib.parse.quote(query), page)
-        data = api(url)
-        batch = data.get("items", [])
-        items.extend(batch)
-        if not batch or len(items) >= data.get("total_count", 0):
-            break
-        page += 1
-    return items
+    url = "%s/search/issues?q=%s&per_page=1" % (
+        API, urllib.parse.quote(query))
+    return int(api(url).get("total_count", 0))
 
 
-def repo_description(full_name):
-    if full_name in REPO_NOTES:
-        return REPO_NOTES[full_name]
-    try:
-        return (api("/repos/" + full_name).get("description") or "").strip()
-    except urllib.error.HTTPError:
-        return ""
+def cves_credited_count():
+    """Count CVEs published with USER credited as reporter.
 
-
-def build_prs_block():
-    repos = {}
-    for item in merged_prs():
-        full = item["repository_url"].split("/repos/", 1)[1]
-        repos.setdefault(full, []).append(
-            (item["number"], item["title"].strip(), item["html_url"]))
-    for prs in repos.values():
-        prs.sort(key=lambda pr: pr[0], reverse=True)
-    order = sorted(repos, key=lambda name: (-len(repos[name]), name))
-    total = sum(len(prs) for prs in repos.values())
-
-    lines = ["**%d** merged pull requests across **%d** open-source projects."
-             % (total, len(repos)), ""]
-    for full in order:
-        description = repo_description(full)
-        header = "**[%s](https://github.com/%s)**" % (full, full)
-        if description:
-            header += " - " + description
-        lines.append(header)
-        for number, title, url in repos[full]:
-            title = PR_TITLE_OVERRIDES.get("%s#%d" % (full, number), title)
-            lines.append("- [#%d](%s) - %s" % (number, url, title))
-        lines.append("")
-    return "\n".join(lines).rstrip()
-
-
-def build_cves_block():
+    Source of truth is data/advisories.json - a curated GHSA-id list.
+    The companion badge link uses GitHub's `credit:USER` filter on the
+    Advisory Database; only entries that show up there belong in this
+    file. (GitHub's `credits[]` listing has been observed to drop
+    `user.login` for some published advisories, so the search filter
+    can under-count even when the operator is genuinely the reporter -
+    keeping the curated list keeps the badge honest if that recurs.)
+    """
     with open(ADVISORIES, encoding="utf-8") as handle:
-        entries = json.load(handle)
-    lines = ["| CVE | Severity | Vulnerability |",
-             "|-----|----------|---------------|"]
-    for entry in entries:
-        ghsa = entry["ghsa"]
-        advisory = api("/advisories/" + ghsa)
-        cve = advisory.get("cve_id") or ghsa
-        severity = (advisory.get("severity") or "").capitalize()
-        url = advisory.get("html_url") or "https://github.com/advisories/" + ghsa
-        note = entry.get("note") or (advisory.get("summary") or "").strip()
-        lines.append("| [%s](%s) | %s | %s |" % (cve, url, severity, note))
-    return "\n".join(lines)
+        return len(json.load(handle))
+
+
+def build_badges_block():
+    cve_count = cves_credited_count()
+    pr_count = merged_prs_count()
+    cves_url = "https://github.com/advisories?query=credit%3A" + USER
+    prs_url = ("https://github.com/pulls?q=is%3Apr+author%3A" + USER
+               + "+is%3Amerged+-user%3A" + USER)
+    cve_badge = ("https://img.shields.io/badge/CVEs%20Published-"
+                 + str(cve_count)
+                 + "-c0392b?style=flat-square&logo=cve"
+                 + "&logoColor=white&labelColor=222")
+    pr_badge = ("https://img.shields.io/badge/Merged%20PRs-"
+                + str(pr_count)
+                + "-2da44e?style=flat-square&logo=github"
+                + "&logoColor=white&labelColor=222")
+    return (
+        "<p>\n"
+        '  <a href="' + cves_url + '">'
+        '<img alt="' + str(cve_count) + ' CVE'
+        + ('' if cve_count == 1 else 's') + ' published" '
+        'src="' + cve_badge + '"></a>\n'
+        '  <a href="' + prs_url + '">'
+        '<img alt="' + str(pr_count) + ' merged PR'
+        + ('' if pr_count == 1 else 's') + '" '
+        'src="' + pr_badge + '"></a>\n'
+        "</p>"
+    )
 
 
 def replace_block(text, name, content):
@@ -142,8 +117,7 @@ def replace_block(text, name, content):
 def main():
     with open(README, encoding="utf-8") as handle:
         original = handle.read()
-    updated = replace_block(original, "PRS", build_prs_block())
-    updated = replace_block(updated, "CVES", build_cves_block())
+    updated = replace_block(original, "BADGES", build_badges_block())
     if updated == original:
         print("README.md already up to date.")
         return

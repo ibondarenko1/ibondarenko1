@@ -10,7 +10,12 @@ These days I spend most of my time reading implementations against their specifi
 
 I'm a researcher by temperament more than by title. I read more than I write, write more than I publish, and try to keep the ratio honest. The good bugs tend to be quiet  they sit between two lines that both look correct, and they reward patience over cleverness.
 
-
+<!-- BADGES:START -->
+<p>
+  <a href="https://github.com/advisories?query=credit%3Aibondarenko1"><img alt="1 CVE published" src="https://img.shields.io/badge/CVEs%20Published-1-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
+  <a href="https://github.com/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1"><img alt="12 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-12-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
+</p>
+<!-- BADGES:END -->
 
 ## 🌐 About Me
 
@@ -30,19 +35,6 @@ On the compliance side, I keep returning to one question: how does runtime evide
 - Fuzzing and differential testing
 - Compliance frameworks: HIPAA · NIST CSF · ISO 27001 · PCI DSS · SOC 2
 
-## 🛡 Published CVEs & Advisories
-
-Four High-severity CVEs in [InternLM/lmdeploy](https://github.com/InternLM/lmdeploy), an LLM serving framework.
-
-<!-- CVES:START -->
-| CVE | Severity | Vulnerability |
-|-----|----------|---------------|
-| [CVE-2025-67729](https://github.com/advisories/GHSA-9pf3-7rrr-x5jh) | High | Arbitrary code execution via insecure deserialization in `torch.load()` |
-| [CVE-2026-33626](https://github.com/advisories/GHSA-6w67-hwm5-92mq) | High | Server-side request forgery via vision-language image loading |
-| [CVE-2026-46432](https://github.com/advisories/GHSA-m549-qq94-fvhg) | High | Arbitrary code execution via hardcoded `trust_remote_code=True` |
-| [CVE-2026-46517](https://github.com/advisories/GHSA-9xq9-36w5-q796) | High | Unsafe remote-code load path with no user opt-out |
-<!-- CVES:END -->
-
 ## 🛡 Hands-On Defense
 
 Security blue team through a 48-hour live red team engagement. Hardened a multi-zone 
@@ -50,36 +42,6 @@ WAN/DMZ/LAN environment: deployed Security Onion IDS/IPS, Suricata, Zeek,
 Wazuh HIDS, PFSense firewall rules, honeypots, and automated incident 
 response. Maintained service uptime under sustained attack against a 
 NIST + HIPAA baseline.
-## 🔼 Upstream Contributions
-
-Upstream pull requests into production open-source projects, focused on memory-safety, DoS hardening, and protocol validation.
-
-<!-- PRS:START -->
-**12** merged pull requests across **5** open-source projects.
-
-**[google/gvisor](https://github.com/google/gvisor)** - container runtime / application kernel
-- [#13181](https://github.com/google/gvisor/pull/13181) - stack: document conntrack seed regen requirement on iptables S/R
-- [#13165](https://github.com/google/gvisor/pull/13165) - tcp: strict RFC 5961 RST sequence validation (contributes to #1132)
-- [#13153](https://github.com/google/gvisor/pull/13153) - lisafs: reject FRemoveXattr on deleted files
-- [#13015](https://github.com/google/gvisor/pull/13015) - systrap: hold sysmsgThreadsMu around map read in switchToApp
-- [#12927](https://github.com/google/gvisor/pull/12927) - systrap: fix TOCTOU on ThreadID in NotifyInterrupt
-- [#12925](https://github.com/google/gvisor/pull/12925) - tun: add empty data check before AsSlice()[0] in TUN Write()
-
-**[google/bumble](https://github.com/google/bumble)** - Bluetooth protocol stack
-- [#918](https://github.com/google/bumble/pull/918) - avdtp: bound message assembler to drop truncated PDUs (DoS prevention)
-- [#914](https://github.com/google/bumble/pull/914) - sdp: bound DataElement parse recursion to prevent RecursionError DoS
-- [#912](https://github.com/google/bumble/pull/912) - fix: add input validation to prevent remote crash from empty/malformed input
-
-**[google/osv-scanner](https://github.com/google/osv-scanner)** - vulnerability scanner
-- [#2748](https://github.com/google/osv-scanner/pull/2748) - fix: correct misleading docstrings in scalibrextract extractors
-
-**[swiftlang/swift-package-manager](https://github.com/swiftlang/swift-package-manager)** - Apple, Swift toolchain
-- [#10001](https://github.com/swiftlang/swift-package-manager/pull/10001) - registry: reject extracted archives with escaping symlinks
-
-**[tink-crypto/tink-py](https://github.com/tink-crypto/tink-py)** - Google cryptography library
-- [#76](https://github.com/tink-crypto/tink-py/pull/76) - fix(jwt): reject JWK Sets with duplicate JSON keys
-<!-- PRS:END -->
-
 ## 📜 Certifications
 
 <p>

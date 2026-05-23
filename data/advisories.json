@@ -1,17 +1,5 @@
 [
   {
-    "ghsa": "GHSA-9pf3-7rrr-x5jh",
-    "note": "Arbitrary code execution via insecure deserialization in `torch.load()`"
-  },
-  {
-    "ghsa": "GHSA-6w67-hwm5-92mq",
-    "note": "Server-side request forgery via vision-language image loading"
-  },
-  {
-    "ghsa": "GHSA-m549-qq94-fvhg",
-    "note": "Arbitrary code execution via hardcoded `trust_remote_code=True`"
-  },
-  {
     "ghsa": "GHSA-9xq9-36w5-q796",
     "note": "Unsafe remote-code load path with no user opt-out"
   }
