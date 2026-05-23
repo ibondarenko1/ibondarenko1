@@ -35,6 +35,14 @@ On the compliance side, I keep returning to one question: how does runtime evide
 - Fuzzing and differential testing
 - Compliance frameworks: HIPAA · NIST CSF · ISO 27001 · PCI DSS · SOC 2
 
+## 📂 Featured Projects
+
+**[m365-security-operations](https://github.com/ibondarenko1/m365-security-operations)** — detect-and-remediate audit toolkit for solo defenders running Microsoft 365 + Cloudflare in small organizations. Five domains audited in one PowerShell command (Sentinel, Defender for O365, DNS + email auth, Entra ID identity, Defender for Cloud); ~60 framework-tagged checks (NIST CSF, NIST 800-53, ISO 27001, MITRE ATT&CK, MCSB); every finding linked to a ready-to-deploy remediation artifact. 30-second demo via mock mode. MIT licensed.
+
+**[llm-serving-security](https://github.com/ibondarenko1/llm-serving-security)** — practical security reference for the LLM serving stack. CVE matrix, vulnerability classes, and hardening guidance for vLLM, Triton, lmdeploy, BentoML, SGLang, Ollama, TGI.
+
+**[blue-team-engagement](https://github.com/ibondarenko1/blue-team-engagement)** — one-week red-team / blue-team enterprise network defense engagement: case study, custom Sigma detection pack, and methodology against sustained attack across multi-zone WAN/DMZ/LAN.
+
 ## 🛡 Hands-On Defense
 
 Security blue team through a 48-hour live red team engagement. Hardened a multi-zone 
