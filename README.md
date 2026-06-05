@@ -13,7 +13,7 @@ I'm a researcher by temperament more than by title. I read more than I write, wr
 <!-- BADGES:START -->
 <p>
   <a href="https://github.com/advisories?query=credit%3Aibondarenko1"><img alt="1 CVE published" src="https://img.shields.io/badge/CVEs%20Published-1-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
-  <a href="https://github.com/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1"><img alt="13 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-14-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
+  <a href="https://github.com/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1"><img alt="15 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-15-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
 </p>
 <!-- BADGES:END -->
 
