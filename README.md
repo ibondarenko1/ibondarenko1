@@ -37,7 +37,7 @@ On the compliance side, I keep returning to one question: how does runtime evide
 
 ## 📂 Featured Projects
 
-**[azure-soc-detection-lab](https://github.com/ibondarenko1/azure-soc-detection-lab)**  Detection-as-Code on a live Microsoft Sentinel + Defender XDR tenant. Five AzureActivity analytics rules (MITRE-mapped), each proven end-to-end (trigger → incident → investigation), authored as versioned YAML and deployed by a **PR-gated GitHub Actions pipeline via OIDC** (no secrets)  not hand-clicked. Built alongside SC-200.
+**[azure-sentinel-detection-engineering]((https://github.com/ibondarenko1/azure-sentinel-detection-engineering))**  Detection-as-Code on a live Microsoft Sentinel + Defender XDR tenant. Five AzureActivity analytics rules (MITRE-mapped), each proven end-to-end (trigger → incident → investigation), authored as versioned YAML and deployed by a **PR-gated GitHub Actions pipeline via OIDC** (no secrets)  not hand-clicked. Built alongside SC-200.
 
 **[m365-security-operations](https://github.com/ibondarenko1/m365-security-operations)**  detect-and-remediate audit toolkit for solo defenders running Microsoft 365 + Cloudflare in small organizations. Five domains audited in one PowerShell command (Sentinel, Defender for O365, DNS + email auth, Entra ID identity, Defender for Cloud); ~60 framework-tagged checks (NIST CSF, NIST 800-53, ISO 27001, MITRE ATT&CK, MCSB); every finding linked to a ready-to-deploy remediation artifact. 30-second demo via mock mode. MIT licensed.
 
