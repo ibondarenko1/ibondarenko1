@@ -1,7 +1,7 @@
 Ievgen (Jack) Bondarenko
 Cloud Security & Detection Engineering  Microsoft Sentinel · Defender XDR
-I work the defensive side of cloud security: building detections that actually fire on a live Microsoft Sentinel and Defender tenant, and proving each one end to end. I came to this through compliance frameworks and source-level security research  reading implementations against their specifications — and that's the lens I bring to detection. A control isn't real until you can show it catching the thing it claims to catch.
-The work I trust is the kind you can witness. A rule that has never fired against a real trigger is a hypothesis, not a detection. So I build the whole loop: rule logic, controlled trigger, the incident it raises, the investigation, the MITRE mapping — versioned and deployed like code, not clicked into a portal. The good signal tends to be quiet; it sits between two events that both look normal, and it rewards patience over cleverness.
+I work the defensive side of cloud security: building detections that actually fire on a live Microsoft Sentinel and Defender tenant, and proving each one end to end. I came to this through compliance frameworks and source-level security research  reading implementations against their specifications  and that's the lens I bring to detection. A control isn't real until you can show it catching the thing it claims to catch.
+The work I trust is the kind you can witness. A rule that has never fired against a real trigger is a hypothesis, not a detection. So I build the whole loop: rule logic, controlled trigger, the incident it raises, the investigation, the MITRE mapping  versioned and deployed like code, not clicked into a portal. The good signal tends to be quiet; it sits between two events that both look normal, and it rewards patience over cleverness.
 <!-- BADGES:START -->
 <p>
   <a href="https://github.com/advisories?query=credit%3Aibondarenko1"><img alt="1 CVE published" src="https://img.shields.io/badge/CVEs%20Published-1-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
@@ -11,8 +11,8 @@ The work I trust is the kind you can witness. A rule that has never fired agains
 🎯 Focus
 
 Detection engineering on the Microsoft stack  Microsoft Sentinel (KQL), Defender XDR, Defender for Endpoint, Entra ID identity
-Detection-as-Code — versioned rules, PR-gated CI/CD, OIDC deploy, unit-tested and false-positive–measured
-Three telemetry planes — cloud control plane (Activity Log), endpoint, and identity (sign-ins)
+Detection-as-Code  versioned rules, PR-gated CI/CD, OIDC deploy, unit-tested and false-positive–measured
+Three telemetry planes  cloud control plane (Activity Log), endpoint, and identity (sign-ins)
 Threat detection mapped to MITRE ATT&CK; Sigma for vendor-neutral portability
 Cloud-native & AI attack surface — container runtimes and the LLM serving stack: the source-level view that sharpens what I look for in telemetry
 
@@ -24,7 +24,7 @@ llm-serving-security  security reference for the LLM serving stack: CVE matrix, 
 🛡 Hands-On Defense
 Blue team through a 48-hour live red-team engagement. Hardened a multi-zone WAN/DMZ/LAN: deployed Security Onion IDS/IPS, Suricata, Zeek, Wazuh HIDS, pfSense firewall rules, honeypots, and automated incident response. Maintained service uptime under sustained attack against a NIST + HIPAA baseline.
 🔬 Source-level research & upstream contributions
-Alongside the detection work, I read code in places that are supposed to be safe — container runtimes, protocol stacks, syscall layers — and send hardening upstream when it survives review. Merged contributions to Google gVisor, Kubernetes, NVIDIA Triton, and other infrastructure projects; published advisories and a CVE. This is the source-level view that makes my detection perspective unusual: I tend to know how a thing actually breaks, not just how its alert looks.
+Alongside the detection work, I read code in places that are supposed to be safe — container runtimes, protocol stacks, syscall layers  and send hardening upstream when it survives review. Merged contributions to Google gVisor, Kubernetes, and other infrastructure projects; published advisories and a CVE. This is the source-level view that makes my detection perspective unusual: I tend to know how a thing actually breaks, not just how its alert looks.
 📜 Certifications
 <p>
   <img src="https://img.shields.io/badge/Microsoft%20Certified-Security%20Operations%20Analyst%20Associate%20(SC--200)-0078D4?style=flat-square&logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMyAyMyI+PHBhdGggZmlsbD0iI2YyNTAyMiIgZD0iTTEgMWgxMHYxMEgxeiIvPjxwYXRoIGZpbGw9IiM3ZmJhMDAiIGQ9Ik0xMiAxaDEwdjEwSDEyeiIvPjxwYXRoIGZpbGw9IiMwMGE0ZWYiIGQ9Ik0xIDEyaDEwdjEwSDF6Ii8+PHBhdGggZmlsbD0iI2ZmYjkwMCIgZD0iTTEyIDEyaDEwdjEwSDEyeiIvPjwvc3ZnPg==" />
