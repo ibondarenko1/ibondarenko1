@@ -31,7 +31,7 @@ I work the defensive side of cloud security: detections that fire on a live Micr
 
 ## 🛡 Hands-On Defense
 
-Blue team through a 48-hour live red-team engagement. Hardened a multi-zone WAN/DMZ/LAN: deployed Security Onion IDS/IPS, Suricata, Zeek, Wazuh HIDS, pfSense firewall rules, honeypots, and automated incident response. Maintained service uptime under sustained attack against a NIST + HIPAA baseline.
+Blue team through live red-team engagement. Hardened a multi-zone WAN/DMZ/LAN: deployed Security Onion IDS/IPS, Suricata, Zeek, Wazuh HIDS, pfSense firewall rules, honeypots, and automated incident response. Maintained service uptime under sustained attack against a NIST + HIPAA baseline.
 
 ## 🔬 Source-level research and upstream contributions
 
