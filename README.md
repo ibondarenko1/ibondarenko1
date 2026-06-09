@@ -10,7 +10,7 @@ The work I trust is the kind you can witness. A rule that has never fired agains
 <!-- BADGES:END -->
 🎯 Focus
 
-Detection engineering on the Microsoft stack — Microsoft Sentinel (KQL), Defender XDR, Defender for Endpoint, Entra ID identity
+Detection engineering on the Microsoft stack  Microsoft Sentinel (KQL), Defender XDR, Defender for Endpoint, Entra ID identity
 Detection-as-Code — versioned rules, PR-gated CI/CD, OIDC deploy, unit-tested and false-positive–measured
 Three telemetry planes — cloud control plane (Activity Log), endpoint, and identity (sign-ins)
 Threat detection mapped to MITRE ATT&CK; Sigma for vendor-neutral portability
