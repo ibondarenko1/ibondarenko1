@@ -1,14 +1,12 @@
-![header](https://www.digitalsolutionservices.com/img/services/website1.gif)
-
 # Ievgen (Jack) Bondarenko
 
 **Security Researcher & Compliance Advisor**
 
-I came to security through compliance  frameworks, audits, the long documents that describe what should be true. I stayed because the code describes what is, and the gap between the two is where the interesting work lives.
+I came to security through compliance frameworks, audits, the long documents that describe what should be true. I stayed because the code describes what is, and the gap between the two is where the interesting work lives.
 
 These days I spend most of my time reading implementations against their specifications. I look for the edge case that nobody wrote a test for, the assumption that holds everywhere except in one narrow window. When something survives review, I send it upstream.
 
-I'm a researcher by temperament more than by title. I read more than I write, write more than I publish, and try to keep the ratio honest. The good bugs tend to be quiet  they sit between two lines that both look correct, and they reward patience over cleverness.
+I'm a researcher by temperament more than by title. I read more than I write, write more than I publish, and try to keep the ratio honest. The good bugs tend to be quiet; they sit between two lines that both look correct, and they reward patience over cleverness.
 
 <!-- BADGES:START -->
 <p>
@@ -19,13 +17,13 @@ I'm a researcher by temperament more than by title. I read more than I write, wr
 
 ## 🌐 About Me
 
-I work at the intersection of cybersecurity, low-level systems, and compliance engineering. Most of my professional work has been in regulated environments  healthcare, financial services, MSPs, legal firms  where the question is not whether controls exist, but whether they hold up when something unusual arrives at the door.
+I work at the intersection of cybersecurity, low-level systems, and compliance engineering. Most of my professional work has been in regulated environments (healthcare, financial services, MSPs, legal firms), where the question is not whether controls exist, but whether they hold up when something unusual arrives at the door.
 
 ## 🔧 What I'm Currently Working On
 
 Reading code in places that are supposed to be safe. Container runtimes, protocol stacks, syscall layers. Writing notes. Sending small patches upstream when they survive review.
 
-On the compliance side, I keep returning to one question: how does runtime evidence  what the system actually does under load  map back to the controls auditors ask about. Most frameworks describe intent. The interesting work is closing the distance between intent and behavior.
+On the compliance side, I keep returning to one question: how does runtime evidence (what the system actually does under load) map back to the controls auditors ask about. Most frameworks describe intent. The interesting work is closing the distance between intent and behavior.
 
 ## 🎯 Focus Areas
 
@@ -37,21 +35,18 @@ On the compliance side, I keep returning to one question: how does runtime evide
 
 ## 📂 Featured Projects
 
-**[azure-sentinel-detection-engineering](https://github.com/ibondarenko1/azure-sentinel-detection-engineering)**  Detection-as-Code on a live Microsoft Sentinel + Defender XDR tenant. Five AzureActivity analytics rules (MITRE-mapped), each proven end-to-end (trigger → incident → investigation), authored as versioned YAML and deployed by a **PR-gated GitHub Actions pipeline via OIDC** (no secrets)  not hand-clicked. Built alongside SC-200.
+**[azure-sentinel-detection-engineering](https://github.com/ibondarenko1/azure-sentinel-detection-engineering)**: Detection-as-Code on a live Microsoft Sentinel + Defender XDR tenant. Nine MITRE-mapped analytics rules across control-plane, endpoint, and identity (including a multi-stage correlation rule and a Resource Graph-backed NSG content rule), each proven end-to-end (trigger → incident → investigation), authored as versioned YAML and deployed by a **PR-gated GitHub Actions pipeline via OIDC** (no secrets), not hand-clicked. Built alongside SC-200.
 
-**[m365-security-operations](https://github.com/ibondarenko1/m365-security-operations)**  detect-and-remediate audit toolkit for solo defenders running Microsoft 365 + Cloudflare in small organizations. Five domains audited in one PowerShell command (Sentinel, Defender for O365, DNS + email auth, Entra ID identity, Defender for Cloud); ~60 framework-tagged checks (NIST CSF, NIST 800-53, ISO 27001, MITRE ATT&CK, MCSB); every finding linked to a ready-to-deploy remediation artifact. 30-second demo via mock mode. MIT licensed.
+**[m365-security-operations](https://github.com/ibondarenko1/m365-security-operations)**: detect-and-remediate audit toolkit for solo defenders running Microsoft 365 + Cloudflare in small organizations. Five domains audited in one PowerShell command (Sentinel, Defender for O365, DNS + email auth, Entra ID identity, Defender for Cloud); ~60 framework-tagged checks (NIST CSF, NIST 800-53, ISO 27001, MITRE ATT&CK, MCSB); every finding linked to a ready-to-deploy remediation artifact. 30-second demo via mock mode. MIT licensed.
 
-**[llm-serving-security](https://github.com/ibondarenko1/llm-serving-security)**  practical security reference for the LLM serving stack. CVE matrix, vulnerability classes, and hardening guidance for vLLM, Triton, lmdeploy, BentoML, SGLang, Ollama, TGI.
+**[llm-serving-security](https://github.com/ibondarenko1/llm-serving-security)**: practical security reference for the LLM serving stack. CVE matrix, vulnerability classes, and hardening guidance for vLLM, Triton, lmdeploy, BentoML, SGLang, Ollama, TGI.
 
-**[blue-team-engagement](https://github.com/ibondarenko1/blue-team-engagement)**  one-week red-team / blue-team enterprise network defense engagement: case study, custom Sigma detection pack, and methodology against sustained attack across multi-zone WAN/DMZ/LAN.
+**[blue-team-engagement](https://github.com/ibondarenko1/blue-team-engagement)**: one-week red-team / blue-team enterprise network defense engagement: case study, custom Sigma detection pack, and methodology against sustained attack across multi-zone WAN/DMZ/LAN.
 
 ## 🛡 Hands-On Defense
 
-Security blue team through a 48-hour live red team engagement. Hardened a multi-zone 
-WAN/DMZ/LAN environment: deployed Security Onion IDS/IPS, Suricata, Zeek, 
-Wazuh HIDS, PFSense firewall rules, honeypots, and automated incident 
-response. Maintained service uptime under sustained attack against a 
-NIST + HIPAA baseline.
+Security blue team through a 48-hour live red team engagement. Hardened a multi-zone WAN/DMZ/LAN environment: deployed Security Onion IDS/IPS, Suricata, Zeek, Wazuh HIDS, PFSense firewall rules, honeypots, and automated incident response. Maintained service uptime under sustained attack against a NIST + HIPAA baseline.
+
 ## 📜 Certifications
 
 <p>
