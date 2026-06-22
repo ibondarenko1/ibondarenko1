@@ -1,4 +1,4 @@
-/# Ievgen (Jack) Bondarenko
+# Ievgen (Jack) Bondarenko
 
 **Cloud Security & Detection Engineering** · Microsoft Sentinel · Defender XDR
 
