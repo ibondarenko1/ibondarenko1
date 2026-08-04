@@ -31,15 +31,7 @@ The other half of the work is source-level: I read code in container runtimes, p
 - **Merged upstream security fixes** in Google gVisor, Kubernetes, Azure Sentinel, Swift Package Manager, OSV-Scanner, and Tink-Crypto: container hardening, race conditions, crash handling, sandbox behavior, shared-memory security.
 - Coordinated disclosure through Microsoft MSRC, Google VRP, and CERT/CC VINCE.
 
-## 📂 Featured Projects
 
-**[azure-sentinel-detection-engineering](https://github.com/ibondarenko1/azure-sentinel-detection-engineering)** (flagship): Detection-as-Code on a live Microsoft Sentinel + Defender XDR tenant. Nine MITRE-mapped analytics rules across control-plane, endpoint, and identity (including a multi-stage correlation rule, privilege grant → deployment, and a Resource Graph-backed NSG content rule), each proven end-to-end (trigger → incident → investigation) and checked by a live benign + attack harness that measures false positives instead of assuming them. Versioned YAML, deployed by a PR-gated GitHub Actions pipeline via OIDC (no secrets). Built alongside SC-200.
-
-**[llm-serving-security](https://github.com/ibondarenko1/llm-serving-security)**: security reference for the LLM serving stack. CVE matrix, vulnerability classes, and hardening for vLLM, Triton, lmdeploy, BentoML, SGLang, Ollama, TGI. The point where the research above and the detection work meet.
-
-**[m365-security-operations](https://github.com/ibondarenko1/m365-security-operations)**: detect-and-remediate audit toolkit for Microsoft 365 + Cloudflare in small organizations. Five domains in one PowerShell command; ~60 framework-tagged checks (NIST CSF, NIST 800-53, ISO 27001, MITRE ATT&CK, MCSB), each finding linked to a ready-to-deploy remediation. 30-second demo via mock mode. MIT licensed.
-
-**[blue-team-engagement](https://github.com/ibondarenko1/blue-team-engagement)**: one-week red-team / blue-team enterprise defense engagement. Case study, custom Sigma detection pack, and methodology against sustained attack across a multi-zone WAN/DMZ/LAN.
 
 ## 🛡 Hands-On Defense
 
