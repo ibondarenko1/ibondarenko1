@@ -8,10 +8,8 @@ The other half of the work is source-level: I read code in container runtimes, p
 
 <!-- BADGES:START -->
 <p>
-  <a href="https://github.com/advisories?query=credit%3Aibondarenko1"><img alt="Published advisories" src="https://img.shields.io/badge/Published%20Advisories-2-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
-  <a href="https://github.com/advisories/GHSA-7gwp-5pfp-969j"><img alt="Critical advisory" src="https://img.shields.io/badge/MLflow%20SSRF-Critical-8e1616?style=flat-square&labelColor=222"></a>
-  <a href="https://bughunters.google.com/"><img alt="Google Cloud VRP" src="https://img.shields.io/badge/Google%20Cloud%20VRP-Rewarded-4285F4?style=flat-square&logo=google&logoColor=white&labelColor=222"></a>
-  <a href="https://github.com/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1"><img alt="20 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-20-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
+  <a href="https://github.com/advisories?query=credit%3Aibondarenko1"><img alt="1 CVE published" src="https://img.shields.io/badge/CVEs%20Published-1-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
+  <a href="https://github.com/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1"><img alt="21 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-21-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
 </p>
 <!-- BADGES:END -->
 
