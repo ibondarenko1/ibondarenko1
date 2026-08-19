@@ -8,7 +8,7 @@ The other half of the work is source-level: I read code in container runtimes, p
 
 <!-- BADGES:START -->
 <p>
-  <a href="https://github.com/advisories?query=credit%3Aibondarenko1"><img alt="1 CVE published" src="https://img.shields.io/badge/CVEs%20Published-1-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
+  <a href="https://github.com/advisories?query=credit%3Aibondarenko1"><img alt="2 CVE published" src="https://img.shields.io/badge/CVEs%20Published-2-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
   <a href="https://github.com/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1"><img alt="21 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-21-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
 </p>
 <!-- BADGES:END -->
