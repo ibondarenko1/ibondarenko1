@@ -1,10 +1,10 @@
 # Ievgen (Jack) Bondarenko
 
-**Security Engineering · Vulnerability Research · Detection Engineering · AI Infrastructure**
+**Vulnerability Research · Industrial & IoT Security · Detection Engineering · AI Infrastructure**
 
 I work across the boundary between how systems fail and how defenders detect that failure.
 
-On the research side, I audit source code in AI infrastructure, container runtimes, cloud integrations, and security-sensitive backend systems. That work has led to published vulnerabilities, Google VRP findings, coordinated disclosures, and upstream security fixes.
+On the research side, I audit source code, firmware, update paths, network services, and trust boundaries across AI infrastructure, robotics, IoT, industrial systems, containers, and cloud integrations. That work has led to published CVEs, a CISA Industrial Control Systems advisory, Google VRP recognition, coordinated disclosures, and upstream security fixes.
 
 On the defensive side, I build controls that are tested end to end rather than treated as configuration: detection logic, controlled triggering, incident generation, investigation evidence, false-positive measurement, and deployment as code.
 
@@ -12,7 +12,8 @@ More recently, those two sides have started to converge in my work: security too
 
 <!-- BADGES:START -->
 <p>
-  <a href="https://github.com/advisories?query=credit%3Aibondarenko1"><img alt="3 CVE published" src="https://img.shields.io/badge/CVEs%20Published-3-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
+  <a href="https://ibondarenko.com/research/"><img alt="6 CVEs published" src="https://img.shields.io/badge/CVEs%20Published-6-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
+  <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01"><img alt="CISA ICS Advisory ICSA-26-272-01" src="https://img.shields.io/badge/CISA%20ICS-ICSA--26--272--01-005ea2?style=flat-square&labelColor=222"></a>
   <a href="https://github.com/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1"><img alt="24 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-24-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
 </p>
 <!-- BADGES:END -->
@@ -27,11 +28,18 @@ The v0.1 release includes a frozen temporally validated model, causal feature pi
 
 The project is intentionally explicit about its limits: usable as a research/evaluation product, but not presented as production-ready.
 
+### Industrial & IoT Security Research
+
+- **[CISA ICSA-26-272-01](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01) — Lantronix G520 Series Cellular Gateway** — reported **CVE-2026-84409** and **CVE-2026-91191**. CISA credits me as the researcher and documents potential arbitrary code execution under the affected update and package-handling conditions. Lantronix addressed the issues in firmware 2.6.0.7R6.
+- Current research also covers embedded devices, robotics, industrial software, firmware and update trust, device-management surfaces, and network-facing components.
+
 ### AI & Infrastructure Security Research
 
-- **[GHSA-7gwp-5pfp-969j](https://github.com/advisories/GHSA-7gwp-5pfp-969j)** — MLflow, Critical: unauthenticated full-read SSRF through redirect and DNS-rebinding weaknesses in webhook delivery.
-- **CVE-2026-46517 / GHSA-9xq9-36w5-q796** — vulnerability in `lmdeploy`, an AI model inference server, resolved through coordinated disclosure.
-- **Google Cloud VRP award** — SSRF, API-key disclosure, and response forgery through a per-request `baseUrl` override affecting Gemini and Vertex AI client paths.
+- **[GHSA-7gwp-5pfp-969j](https://github.com/advisories/GHSA-7gwp-5pfp-969j) / CVE-2026-64849** — MLflow, Critical: unauthenticated full-read SSRF through redirect and DNS-rebinding weaknesses in webhook delivery.
+- **[CVE-2026-84173](https://www.cve.org/CVERecord?id=CVE-2026-84173)** — Eclipse Ankaios: authorization bypass in workload control rules allowing access outside an authorized cluster-state subtree.
+- **[GHSA-4hhp-h66f-j5j7](https://github.com/advisories/GHSA-4hhp-h66f-j5j7) / CVE-2026-73560** — vLLM: SSRF and local-file access through a model-specific multimodal path that bypassed hardened media retrieval controls.
+- **[GHSA-9xq9-36w5-q796](https://github.com/advisories/GHSA-9xq9-36w5-q796) / CVE-2026-46517** — `lmdeploy`: unsafe remote-code loading behavior in an AI model inference server, resolved through coordinated disclosure.
+- **Google Cloud VRP recognition** — SSRF, API-key disclosure, and response forgery through a per-request `baseUrl` override affecting Gemini and Vertex AI client paths.
 - **[llm-serving-security](https://github.com/ibondarenko1/llm-serving-security)** — security reference for the LLM serving stack, covering vulnerability classes and hardening across vLLM, Triton, lmdeploy, SGLang, BentoML, Ollama, and TGI.
 
 ### Detection Engineering
@@ -54,7 +62,7 @@ Merged security and hardening work across projects including:
 
 The work spans container hardening, validation boundaries, race conditions, crash handling, sandbox behavior, shared-memory security, SSRF defenses, and protocol/API behavior.
 
-Coordinated disclosure experience includes GitHub Security Advisories, Google VRP, Microsoft MSRC, and CERT/CC VINCE.
+Coordinated disclosure experience includes CISA Industrial Control Systems Vulnerability Management and Coordination, GitHub Security Advisories, Google VRP, Microsoft MSRC, Eclipse Foundation security channels, vendor PSIRTs, and CERT/CC VINCE.
 
 ## 🛡 Defensive Engineering
 
@@ -72,11 +80,11 @@ I have also worked through live red-team / blue-team engagements involving segme
 
 ## 🎯 Current Focus
 
-- **Vulnerability research:** source-level analysis of AI infrastructure, cloud integrations, container boundaries, and security-sensitive backend systems.
+- **Vulnerability research:** source-level and protocol-level analysis across AI infrastructure, robotics, IoT, embedded devices, industrial systems, cloud integrations, and security-sensitive open source.
+- **Industrial & IoT security:** firmware and update trust, device-management surfaces, network services, protocol parsing, certificate validation, and component-to-component trust boundaries.
 - **Detection engineering:** tested detections, Detection-as-Code, SIEM/XDR engineering, and operational signal quality.
 - **AI infrastructure security:** model-serving systems, inference infrastructure, isolation boundaries, and attack surfaces created around AI workloads.
 - **Security tooling:** reproducible systems that connect detection, program analysis, automation, and ML without hiding the evidence behind the result.
-- **Security & compliance engineering:** SOC 2, ISO 27001, HIPAA, and NIST controls implemented as measurable operational systems rather than policy-only artifacts.
 
 ## 📜 Certifications
 
@@ -116,7 +124,7 @@ I have also worked through live red-team / blue-team engagements involving segme
 
 ## 🤝 Connect
 
-Open to remote roles and selected technical work in security engineering, vulnerability research, detection engineering, and AI infrastructure security.
+Open to remote roles and selected technical work in vulnerability research, industrial and IoT security, security engineering, detection engineering, and AI infrastructure security.
 
 **Website:** [ibondarenko.com](https://ibondarenko.com)  
 **LinkedIn:** [ievgen-bondarenko-b13098241](https://www.linkedin.com/in/ievgen-bondarenko-b13098241/)  
