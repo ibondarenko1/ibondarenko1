@@ -12,8 +12,7 @@ More recently, those two sides have started to converge in my work: security too
 
 <!-- BADGES:START -->
 <p>
-  <a href="https://ibondarenko.com/research/"><img alt="6 CVEs published" src="https://img.shields.io/badge/CVEs%20Published-6-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
-  <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01"><img alt="CISA ICS Advisory ICSA-26-272-01" src="https://img.shields.io/badge/CISA%20ICS-ICSA--26--272--01-005ea2?style=flat-square&labelColor=222"></a>
+  <a href="https://github.com/advisories?query=credit%3Aibondarenko1"><img alt="1 CVE published" src="https://img.shields.io/badge/CVEs%20Published-1-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
   <a href="https://github.com/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1"><img alt="24 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-24-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
 </p>
 <!-- BADGES:END -->
