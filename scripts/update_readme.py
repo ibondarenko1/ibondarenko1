@@ -3,16 +3,12 @@
 
 One section is kept in sync automatically:
 
-  * BADGES - two clickable shields.io counter badges near the top of
+  * BADGES - three clickable shields.io badges near the top of
     the README:
-      - CVEs Published -> GitHub Advisory Database, credit:USER filter.
-                          Counts entries in data/advisories.json. Only
-                          GHSAs where USER is credited as reporter
-                          belong in that file - the badge link goes
-                          straight to the canonical GitHub credit list,
-                          so anything on the badge needs to also appear
-                          there. Update the file when one of your
-                          submitted advisories publishes with credit.
+      - CVEs Published -> the total and destination configured in
+                          data/profile_badges.json. This count includes
+                          publications outside GitHub's Advisory Database.
+      - CISA ICS       -> the advisory configured in the same file.
       - Merged PRs     -> GitHub pull-request search (`is:pr is:merged
                           author:USER -user:USER`). Count comes from
                           the search API's total_count, so new merged
@@ -35,7 +31,7 @@ USER = "ibondarenko1"
 API = "https://api.github.com"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 README = os.path.join(ROOT, "README.md")
-ADVISORIES = os.path.join(ROOT, "data", "advisories.json")
+PROFILE_BADGES = os.path.join(ROOT, "data", "profile_badges.json")
 
 
 def api(path):
@@ -63,25 +59,22 @@ def merged_prs_count():
     return int(api(url).get("total_count", 0))
 
 
-def cves_credited_count():
-    """Count CVEs published with USER credited as reporter.
-
-    Source of truth is data/advisories.json - a curated GHSA-id list.
-    The companion badge link uses GitHub's `credit:USER` filter on the
-    Advisory Database; only entries that show up there belong in this
-    file. (GitHub's `credits[]` listing has been observed to drop
-    `user.login` for some published advisories, so the search filter
-    can under-count even when the operator is genuinely the reporter -
-    keeping the curated list keeps the badge honest if that recurs.)
-    """
-    with open(ADVISORIES, encoding="utf-8") as handle:
-        return len(json.load(handle))
+def profile_badges():
+    """Load the manually verified profile badge source of truth."""
+    with open(PROFILE_BADGES, encoding="utf-8") as handle:
+        config = json.load(handle)
+    count = int(config["published_cves"]["count"])
+    if count < 0:
+        raise ValueError("published CVE count cannot be negative")
+    return config
 
 
 def build_badges_block():
-    cve_count = cves_credited_count()
+    config = profile_badges()
+    cve_count = int(config["published_cves"]["count"])
     pr_count = merged_prs_count()
-    cves_url = "https://github.com/advisories?query=credit%3A" + USER
+    cves_url = config["published_cves"]["url"]
+    cisa = config["cisa_ics"]
     prs_url = ("https://github.com/pulls?q=is%3Apr+author%3A" + USER
                + "+is%3Amerged+-user%3A" + USER)
     cve_badge = ("https://img.shields.io/badge/CVEs%20Published-"
@@ -92,12 +85,18 @@ def build_badges_block():
                 + str(pr_count)
                 + "-2da44e?style=flat-square&logo=github"
                 + "&logoColor=white&labelColor=222")
+    cisa_badge = ("https://img.shields.io/badge/CISA%20ICS-"
+                  + cisa["advisory"].replace("-", "--")
+                  + "-005ea2?style=flat-square&labelColor=222")
     return (
         "<p>\n"
         '  <a href="' + cves_url + '">'
         '<img alt="' + str(cve_count) + ' CVE'
         + ('' if cve_count == 1 else 's') + ' published" '
         'src="' + cve_badge + '"></a>\n'
+        '  <a href="' + cisa["url"] + '">'
+        '<img alt="CISA ICS Advisory ' + cisa["advisory"] + '" '
+        'src="' + cisa_badge + '"></a>\n'
         '  <a href="' + prs_url + '">'
         '<img alt="' + str(pr_count) + ' merged PR'
         + ('' if pr_count == 1 else 's') + '" '

@@ -1,0 +1,10 @@
+{
+  "published_cves": {
+    "count": 6,
+    "url": "https://ibondarenko.com/research/"
+  },
+  "cisa_ics": {
+    "advisory": "ICSA-26-272-01",
+    "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01"
+  }
+}
