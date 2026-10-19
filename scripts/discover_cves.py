@@ -11,8 +11,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANIFEST = os.path.join(ROOT, "data", "profile_badges.json")
 DELTA = "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/deltaLog.json"
 OFFICIAL = "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/"
-IDENTITY = re.compile(r"^Ievgen(?:\\s+\\(Jack\\))?\\s+Bondarenko$", re.I)
-CVE = re.compile(r"^CVE-(\\d{4})-(\\d{4,})$")
+IDENTITY = re.compile(r"^Ievgen(?:\s+\(Jack\))?\s+Bondarenko$", re.I)
+CVE = re.compile(r"^CVE-(\d{4})-(\d{4,})$")
 
 
 def get(url):
@@ -91,9 +91,9 @@ def main():
     if discovered:
         entries.extend(sorted(discovered, key=lambda x: x["id"]))
         entries.sort(key=lambda x: x["id"])
-        with open(MANIFEST, "w", encoding="utf-8", newline="\\n") as stream:
+        with open(MANIFEST, "w", encoding="utf-8", newline="\n") as stream:
             json.dump(data, stream, indent=2, ensure_ascii=False)
-            stream.write("\\n")
+            stream.write("\n")
     print("Added", len(discovered), "new CVEs; total", len(entries))
 
 
