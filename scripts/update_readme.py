@@ -5,9 +5,9 @@ One section is kept in sync automatically:
 
   * BADGES - three clickable shields.io badges near the top of
     the README:
-      - CVEs Published -> the total and destination configured in
-                          data/profile_badges.json. This count includes
-                          publications outside GitHub's Advisory Database.
+      - CVEs Published -> count distinct, curated public CVE IDs in
+                          data/profile_badges.json; includes vendor and
+                          CISA publications beyond GitHub advisories.
       - CISA ICS       -> the advisory configured in the same file.
       - Merged PRs     -> GitHub pull-request search (`is:pr is:merged
                           author:USER -user:USER`). Count comes from
@@ -60,18 +60,31 @@ def merged_prs_count():
 
 
 def profile_badges():
-    """Load the manually verified profile badge source of truth."""
+    """Load verified published CVE entries, rejecting duplicate or invalid IDs.
+
+    Entries are reviewed against their linked public CVE/vendor/CISA/GHSA
+    sources before inclusion. This is not a claim that every existing
+    CVE record is discoverable automatically via a single API.
+    """
     with open(PROFILE_BADGES, encoding="utf-8") as handle:
         config = json.load(handle)
-    count = int(config["published_cves"]["count"])
-    if count < 0:
-        raise ValueError("published CVE count cannot be negative")
+    entries = config["published_cves"]["entries"]
+    ids = set()
+    for entry in entries:
+        cve = entry["id"]
+        if not re.fullmatch(r"CVE-[0-9]{4}-[0-9]{4,}", cve):
+            raise ValueError("Invalid CVE ID: " + cve)
+        if cve in ids:
+            raise ValueError("Duplicate CVE ID: " + cve)
+        if not entry["source"].startswith("https://"):
+            raise ValueError("Missing HTTPS attribution source for " + cve)
+        ids.add(cve)
     return config
 
 
 def build_badges_block():
     config = profile_badges()
-    cve_count = int(config["published_cves"]["count"])
+    cve_count = len(config["published_cves"]["entries"])
     pr_count = merged_prs_count()
     cves_url = config["published_cves"]["url"]
     cisa = config["cisa_ics"]

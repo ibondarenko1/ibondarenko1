@@ -1,7 +1,40 @@
 {
   "published_cves": {
-    "count": 6,
-    "url": "https://ibondarenko.com/research/"
+    "url": "https://ibondarenko.com/research/",
+    "entries": [
+      {
+        "id": "CVE-2026-84409",
+        "source": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01"
+      },
+      {
+        "id": "CVE-2026-91191",
+        "source": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01"
+      },
+      {
+        "id": "CVE-2026-64849",
+        "source": "https://github.com/advisories/GHSA-7gwp-5pfp-969j"
+      },
+      {
+        "id": "CVE-2026-84173",
+        "source": "https://www.cve.org/CVERecord?id=CVE-2026-84173"
+      },
+      {
+        "id": "CVE-2026-73560",
+        "source": "https://github.com/advisories/GHSA-4hhp-h66f-j5j7"
+      },
+      {
+        "id": "CVE-2026-46517",
+        "source": "https://github.com/advisories/GHSA-9xq9-36w5-q796"
+      },
+      {
+        "id": "CVE-2026-109812",
+        "source": "https://www.moxa.com/en/support/product-support/security-advisory/mpsa-262560-cve-2026-109812,-cve-2026-109813-vulnerabilities-in-industrial-computing-products"
+      },
+      {
+        "id": "CVE-2026-109813",
+        "source": "https://www.moxa.com/en/support/product-support/security-advisory/mpsa-262560-cve-2026-109812,-cve-2026-109813-vulnerabilities-in-industrial-computing-products"
+      }
+    ]
   },
   "cisa_ics": {
     "advisory": "ICSA-26-272-01",
