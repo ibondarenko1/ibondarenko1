@@ -86,7 +86,7 @@ def build_badges_block():
     config = profile_badges()
     cve_count = len(config["published_cves"]["entries"])
     pr_count = merged_prs_count()
-    cves_url = config["published_cves"]["url"]
+    cves_url = "https://github.com/" + USER + "/" + USER + "#published-cves"
     cisa = config["cisa_ics"]
     prs_url = ("https://github.com/pulls?q=is%3Apr+author%3A" + USER
                + "+is%3Amerged+-user%3A" + USER)
@@ -119,6 +119,16 @@ def build_badges_block():
     )
 
 
+def build_cve_list():
+    """Build a public, clickable source list from the same registry as the badge."""
+    entries = profile_badges()["published_cves"]["entries"]
+    rows = ["## Published CVEs", "",
+            "Each entry links to its public advisory or CVE record.", ""]
+    for item in sorted(entries, key=lambda row: row["id"]):
+        rows.append("- [" + item["id"] + "](" + item["source"] + ")")
+    return "\n".join(rows)
+
+
 def replace_block(text, name, content):
     start, end = "<!-- %s:START -->" % name, "<!-- %s:END -->" % name
     pattern = re.compile(re.escape(start) + ".*?" + re.escape(end), re.DOTALL)
@@ -131,6 +141,7 @@ def main():
     with open(README, encoding="utf-8") as handle:
         original = handle.read()
     updated = replace_block(original, "BADGES", build_badges_block())
+    updated = replace_block(updated, "CVE_LIST", build_cve_list())
     if updated == original:
         print("README.md already up to date.")
         return
