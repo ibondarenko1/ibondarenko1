@@ -102,6 +102,7 @@ def build_badges_block():
                   + cisa["advisory"].replace("-", "--")
                   + "-005ea2?style=flat-square&labelColor=222")
     return (
+        "### Published CVEs: " + str(cve_count) + "\n\n"
         "<p>\n"
         '  <a href="' + cves_url + '">'
         '<img alt="' + str(cve_count) + ' CVE'

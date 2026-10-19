@@ -11,6 +11,8 @@ On the defensive side, I build controls that are tested end to end rather than t
 More recently, those two sides have started to converge in my work: security tooling and detection systems that combine source-level analysis, operational telemetry, reproducible engineering, and ML where it improves the security workflow.
 
 <!-- BADGES:START -->
+### Published CVEs: 8
+
 <p>
   <a href="https://ibondarenko.com/research/"><img alt="8 CVEs published" src="https://img.shields.io/badge/CVEs%20Published-8-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
   <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01"><img alt="CISA ICS Advisory ICSA-26-272-01" src="https://img.shields.io/badge/CISA%20ICS-ICSA--26--272--01-005ea2?style=flat-square&labelColor=222"></a>
