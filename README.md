@@ -14,11 +14,26 @@ More recently, those two sides have started to converge in my work: security too
 ### Published CVEs: 8
 
 <p>
-  <a href="https://ibondarenko.com/research/"><img alt="8 CVEs published" src="https://img.shields.io/badge/CVEs%20Published-8-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
+  <a href="https://github.com/ibondarenko1/ibondarenko1#published-cves"><img alt="8 CVEs published" src="https://img.shields.io/badge/CVEs%20Published-8-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
   <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01"><img alt="CISA ICS Advisory ICSA-26-272-01" src="https://img.shields.io/badge/CISA%20ICS-ICSA--26--272--01-005ea2?style=flat-square&labelColor=222"></a>
   <a href="https://github.com/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1"><img alt="24 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-24-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
 </p>
 <!-- BADGES:END -->
+
+<!-- CVE_LIST:START -->
+## Published CVEs
+
+Each entry links to its public advisory or CVE record.
+
+- [CVE-2026-109812](https://www.moxa.com/en/support/product-support/security-advisory/mpsa-262560-cve-2026-109812,-cve-2026-109813-vulnerabilities-in-industrial-computing-products)
+- [CVE-2026-109813](https://www.moxa.com/en/support/product-support/security-advisory/mpsa-262560-cve-2026-109812,-cve-2026-109813-vulnerabilities-in-industrial-computing-products)
+- [CVE-2026-46517](https://github.com/advisories/GHSA-9xq9-36w5-q796)
+- [CVE-2026-64849](https://github.com/advisories/GHSA-7gwp-5pfp-969j)
+- [CVE-2026-73560](https://github.com/advisories/GHSA-4hhp-h66f-j5j7)
+- [CVE-2026-84173](https://www.cve.org/CVERecord?id=CVE-2026-84173)
+- [CVE-2026-84409](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01)
+- [CVE-2026-91191](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01)
+<!-- CVE_LIST:END -->
 
 ## 🔬 Selected Work
 
