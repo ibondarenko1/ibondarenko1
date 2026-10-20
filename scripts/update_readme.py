@@ -1,24 +1,10 @@
 #!/usr/bin/env python3
-"""Regenerate the dynamic badges block of the GitHub profile README.
+"""Regenerate the GitHub profile README's badges and published CVE index.
 
-One section is kept in sync automatically:
-
-  * BADGES - three clickable shields.io badges near the top of
-    the README:
-      - CVEs Published -> count distinct, curated public CVE IDs in
-                          data/profile_badges.json; includes vendor and
-                          CISA publications beyond GitHub advisories.
-      - CISA ICS       -> the advisory configured in the same file.
-      - Merged PRs     -> GitHub pull-request search (`is:pr is:merged
-                          author:USER -user:USER`). Count comes from
-                          the search API's total_count, so new merged
-                          PRs auto-bump the badge.
-
-The block lives between HTML marker comments in README.md:
-
-  <!-- BADGES:START --> ... <!-- BADGES:END -->
-
-Run locally with a token in GITHUB_TOKEN; the workflow passes one in CI.
+BADGES shows published CVE count, CISA advisory, and merged upstream PRs.
+CVE_LIST uses the same curated public-source registry. Entries discovered
+automatically may initially lack optional product/issue descriptions.
+Both sections are delimited by markers in README.md and updated together.
 """
 import json
 import os
@@ -78,6 +64,14 @@ def profile_badges():
             raise ValueError("Duplicate CVE ID: " + cve)
         if not entry["source"].startswith("https://"):
             raise ValueError("Missing HTTPS attribution source for " + cve)
+        has_product = "product" in entry
+        has_summary = "summary" in entry
+        if has_product != has_summary:
+            raise ValueError("Product and summary must be supplied together for " + cve)
+        if has_product:
+            if not all(isinstance(entry[field], str) and entry[field].strip()
+                       for field in ("product", "summary")):
+                raise ValueError("Empty product or summary for " + cve)
         ids.add(cve)
     return config
 
@@ -102,7 +96,6 @@ def build_badges_block():
                   + cisa["advisory"].replace("-", "--")
                   + "-005ea2?style=flat-square&labelColor=222")
     return (
-        "### Published CVEs: " + str(cve_count) + "\n\n"
         "<p>\n"
         '  <a href="' + cves_url + '">'
         '<img alt="' + str(cve_count) + ' CVE'
@@ -120,12 +113,19 @@ def build_badges_block():
 
 
 def build_cve_list():
-    """Build a public, clickable source list from the same registry as the badge."""
+    """Build the clickable, descriptive CVE index from the badge registry.
+
+    Automatically discovered entries remain valid before optional editorial
+    metadata is reviewed and added to the registry.
+    """
     entries = profile_badges()["published_cves"]["entries"]
     rows = ["## Published CVEs", "",
-            "Each entry links to its public advisory or CVE record.", ""]
+            "Verified public advisory links for each published CVE.", ""]
     for item in sorted(entries, key=lambda row: row["id"]):
-        rows.append("- [" + item["id"] + "](" + item["source"] + ")")
+        line = "- [" + item["id"] + "](" + item["source"] + ")"
+        if item.get("product") and item.get("summary"):
+            line += " · **" + item["product"] + "**: " + item["summary"]
+        rows.append(line)
     return "\n".join(rows)
 
 
