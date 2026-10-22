@@ -24,8 +24,6 @@ jobs:
         run: python3 scripts/discover_cves.py
 
       - name: Regenerate dynamic README sections
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/update_readme.py
 
       - name: Commit and push if changed
