@@ -20,13 +20,13 @@ README = os.path.join(ROOT, "README.md")
 PROFILE_BADGES = os.path.join(ROOT, "data", "profile_badges.json")
 
 
-def api(path):
+def api(path, use_token=True):
     url = path if path.startswith("http") else API + path
     req = urllib.request.Request(url)
     req.add_header("Accept", "application/vnd.github+json")
     req.add_header("User-Agent", USER + "-readme-bot")
     req.add_header("X-GitHub-Api-Version", "2022-11-28")
-    token = os.environ.get("GITHUB_TOKEN", "")
+    token = os.environ.get("GITHUB_TOKEN", "") if use_token else ""
     if token:
         req.add_header("Authorization", "Bearer " + token)
     with urllib.request.urlopen(req, timeout=30) as resp:
@@ -42,7 +42,11 @@ def merged_prs_count():
     query = "type:pr author:%s is:merged -user:%s" % (USER, USER)
     url = "%s/search/issues?q=%s&per_page=1" % (
         API, urllib.parse.quote(query))
-    return int(api(url).get("total_count", 0))
+    # The profile badge links to the public search result. A repository-scoped
+    # Actions token sees only its installation's repository, while a personal
+    # token can include private pull requests. Use the anonymous public view so
+    # the generated count matches what profile visitors can verify.
+    return int(api(url, use_token=False).get("total_count", 0))
 
 
 def profile_badges():
