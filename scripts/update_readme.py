@@ -10,11 +10,6 @@ import json
 import os
 import re
 import sys
-import time
-import urllib.error
-import urllib.parse
-import urllib.request
-from html.parser import HTMLParser
 
 USER = "ibondarenko1"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,80 +17,23 @@ README = os.path.join(ROOT, "README.md")
 PROFILE_BADGES = os.path.join(ROOT, "data", "profile_badges.json")
 
 
-class EmbeddedSearchDataParser(HTMLParser):
-    """Extract GitHub's public search result payload from its HTML page."""
-
-    def __init__(self):
-        super().__init__()
-        self._capture = False
-        self._chunks = []
-        self.payload = None
-
-    def handle_starttag(self, tag, attrs):
-        attributes = dict(attrs)
-        if (
-            tag == "script"
-            and attributes.get("type") == "application/json"
-            and attributes.get("data-target") == "react-app.embeddedData"
-        ):
-            self._capture = True
-            self._chunks = []
-
-    def handle_data(self, data):
-        if self._capture:
-            self._chunks.append(data)
-
-    def handle_endtag(self, tag):
-        if tag == "script" and self._capture:
-            self.payload = "".join(self._chunks)
-            self._capture = False
-
-
-def public_search_page(url, attempts=3):
-    """Fetch a GitHub public search page without repository or user tokens."""
-    req = urllib.request.Request(url)
-    req.add_header("Accept", "text/html")
-    req.add_header("User-Agent", USER + "-readme-bot")
-    for attempt in range(attempts):
-        try:
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                return resp.read().decode("utf-8")
-        except urllib.error.HTTPError as error:
-            if error.code != 429 and not 500 <= error.code < 600:
-                raise
-            if attempt + 1 == attempts:
-                raise
-            time.sleep(2 ** attempt)
-
-
-def merged_prs_search_url():
-    query = "type:pr author:%s is:merged -user:%s" % (USER, USER)
-    return "https://github.com/search?" + urllib.parse.urlencode(
-        {"q": query, "type": "pullrequests"}
-    )
-
-
-def merged_prs_count():
+def merged_prs(config=None):
     """Count merged PRs authored by USER in repositories USER does not own.
 
-    Parse the count that GitHub shows to anonymous profile visitors. The REST
-    Search API is unsuitable here: a repository-scoped Actions token sees only
-    its own repository, while an anonymous API request from an Actions runner
-    can return an empty result set. The public HTML search page carries the
-    displayed count in a structured JSON payload.
+    GitHub's repository-scoped Actions token cannot search other repositories,
+    and anonymous searches from Actions runners have returned false zeroes.
+    Keep the manually verified public count and its exact query together in the
+    reviewed profile registry instead of letting the workflow corrupt the badge.
     """
-    parser = EmbeddedSearchDataParser()
-    parser.feed(public_search_page(merged_prs_search_url()))
-    if not parser.payload:
-        raise ValueError("GitHub public search payload was not found")
-
-    route = json.loads(parser.payload)["payload"]["blackbirdSearchRoute"]
-    if route.get("errors") or route.get("warn_limited_results"):
-        raise ValueError("GitHub public search returned incomplete results")
-    count = route.get("result_count")
+    entry = (config or profile_badges())["merged_prs"]
+    count = entry.get("count")
     if isinstance(count, bool) or not isinstance(count, int) or count < 0:
-        raise ValueError("GitHub public search returned an invalid result count")
-    return count
+        raise ValueError("Invalid merged PR count")
+    if not entry.get("url", "").startswith("https://github.com/search?"):
+        raise ValueError("Invalid merged PR public search URL")
+    if not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", entry.get("verified_at", "")):
+        raise ValueError("Invalid merged PR verification date")
+    return entry
 
 
 def profile_badges():
@@ -132,10 +70,11 @@ def profile_badges():
 def build_badges_block():
     config = profile_badges()
     cve_count = len(config["published_cves"]["entries"])
-    pr_count = merged_prs_count()
+    merged = merged_prs(config)
+    pr_count = merged["count"]
     cves_url = "https://github.com/" + USER + "/" + USER + "#published-cves"
     cisa = config["cisa_ics"]
-    prs_url = merged_prs_search_url()
+    prs_url = merged["url"]
     cve_badge = ("https://img.shields.io/badge/CVEs%20Published-"
                  + str(cve_count)
                  + "-c0392b?style=flat-square&logo=cve"
