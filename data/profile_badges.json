@@ -55,5 +55,10 @@
   "cisa_ics": {
     "advisory": "ICSA-26-272-01",
     "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01"
+  },
+  "merged_prs": {
+    "count": 25,
+    "verified_at": "2026-10-22",
+    "url": "https://github.com/search?q=type%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1&type=pullrequests"
   }
 }
