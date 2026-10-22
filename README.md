@@ -11,7 +11,7 @@ I investigate security boundaries in AI services, industrial and connected syste
 <p>
   <a href="https://github.com/ibondarenko1/ibondarenko1#published-cves"><img alt="8 CVEs published" src="https://img.shields.io/badge/CVEs%20Published-8-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
   <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01"><img alt="CISA ICS Advisory ICSA-26-272-01" src="https://img.shields.io/badge/CISA%20ICS-ICSA--26--272--01-005ea2?style=flat-square&labelColor=222"></a>
-  <a href="https://github.com/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1"><img alt="0 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-0-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
+  <a href="https://github.com/search?q=type%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1&type=pullrequests"><img alt="25 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-25-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
 </p>
 <!-- BADGES:END -->
 
