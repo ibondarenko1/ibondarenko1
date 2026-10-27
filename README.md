@@ -1,9 +1,9 @@
 # Ievgen Bondarenko
 
 **Independent Security Researcher**  
-AI Infrastructure · Robotics & Distributed Systems · IoT & Industrial Systems · Open Source Security
+AI infrastructure · Industrial and IoT systems · Open source security
 
-I investigate security boundaries in AI services, industrial and connected systems, firmware, and security-sensitive open source. I use source review, reverse engineering, and controlled reproduction to establish root cause, practical impact, and remediation. Public results include vendor and CISA advisories, Google Cloud VRP recognition, and merged upstream security fixes.
+I research security boundaries in AI infrastructure, industrial devices, and open-source systems. I document vulnerabilities, work with maintainers on fixes, and publish results through vendor advisories and upstream patches.
 
 [Research](https://ibondarenko.com/research/) · [Open-source contributions](https://ibondarenko.com/open-source/) · [Resume](https://ibondarenko.com/resume/)
 
@@ -15,36 +15,35 @@ I investigate security boundaries in AI services, industrial and connected syste
 </p>
 <!-- BADGES:END -->
 
-## Selected published research
+## Selected research and contributions
 
-### Industrial & IoT security
+- **[gVisor](https://github.com/google/gvisor/pull/12927)** - Fixed a time-of-check/time-of-use bug in shared-memory ThreadID handling. Merged upstream.
+- **[Swift Package Manager](https://github.com/swiftlang/swift-package-manager/pull/10001)** - Added validation to reject extracted archives with symlinks that escape the destination directory. Merged upstream.
+- **[Moxa AIG-302](https://www.moxa.com/en/support/product-support/security-advisory/mpsa-262560-cve-2026-109812,-cve-2026-109813-vulnerabilities-in-industrial-computing-products)** - Reported missing authorization and a shared root CA private key. Two published CVEs, vendor acknowledgement, and a firmware fix.
+- **[Lantronix G520](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01)** - Reported update and package-authenticity flaws. Two published CVEs, researcher credit in CISA ICSA-26-272-01, and vendor remediation.
 
-- **[Moxa AIG-302 · MPSA-262560](https://www.moxa.com/en/support/product-support/security-advisory/mpsa-262560-cve-2026-109812,-cve-2026-109813-vulnerabilities-in-industrial-computing-products)**: [CVE-2026-109812](https://www.cve.org/CVERecord?id=CVE-2026-109812) and [CVE-2026-109813](https://www.cve.org/CVERecord?id=CVE-2026-109813). Missing authorization in a secrets API and a shared hard-coded root CA private key. Moxa credits my report and provides a fix in firmware 1.4.1.
-- **[Lantronix G520 · CISA ICSA-26-272-01](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01)**: [CVE-2026-84409](https://www.cve.org/CVERecord?id=CVE-2026-84409) and [CVE-2026-91191](https://www.cve.org/CVERecord?id=CVE-2026-91191). Update-metadata XSS and improper package-signature verification. CISA credits the research and documents vendor remediation.
+## AI and distributed systems research
 
-### AI infrastructure & distributed systems
+- **[MLflow](https://github.com/advisories/GHSA-7gwp-5pfp-969j)** - Unauthenticated full-read SSRF in webhook delivery.
+- **[Eclipse Ankaios](https://www.cve.org/CVERecord?id=CVE-2026-84173)** - Authorization bypass outside an allowed cluster-state subtree.
+- **[vLLM](https://github.com/advisories/GHSA-4hhp-h66f-j5j7)** - Multimodal media retrieval controls bypassed, allowing SSRF and local-file access.
+- **[LMDeploy](https://github.com/advisories/GHSA-9xq9-36w5-q796)** - Unsafe remote-code trust during model initialization.
 
-- **[MLflow · CVE-2026-64849](https://github.com/advisories/GHSA-7gwp-5pfp-969j)**: Unauthenticated full-read SSRF in webhook delivery through redirects and DNS-rebinding weaknesses.
-- **[Eclipse Ankaios · CVE-2026-84173](https://www.cve.org/CVERecord?id=CVE-2026-84173)**: Control Interface authorization bypass permitting access outside an authorized cluster-state subtree.
-- **[vLLM · CVE-2026-73560](https://github.com/advisories/GHSA-4hhp-h66f-j5j7)**: Multimodal media retrieval bypass enabling SSRF and local-file access outside hardened retrieval controls.
-- **[LMDeploy · CVE-2026-46517](https://github.com/advisories/GHSA-9xq9-36w5-q796)**: Unsafe remote-code trust during model initialization.
-- **[Google Cloud VRP recognition](https://ibondarenko.com/research/)**: Research on a caller-influenced provider endpoint in Google Genkit, exposing SSRF, API-key disclosure, and response-forgery paths.
+## Other upstream security fixes
 
-## Selected upstream security fixes
-
-- **[gVisor · systrap ThreadID TOCTOU](https://github.com/google/gvisor/pull/12927)**: Eliminated a guest-writable shared-memory time-of-check/time-of-use window.
-- **[vLLM · multimodal media retrieval](https://github.com/vllm-project/vllm/pull/43117)**: Routed image and audio fetching through MediaConnector security controls.
-- **[Swift Package Manager · archive extraction](https://github.com/swiftlang/swift-package-manager/pull/10001)**: Rejected extracted archives containing escaping symlinks.
-- **[Tink · JWK Set validation](https://github.com/tink-crypto/tink-py/pull/76)**: Rejected ambiguous JWK Sets containing duplicate JSON keys.
-- **[Google Bumble · protocol input validation](https://github.com/google/bumble/pull/912)**: Hardened malformed-input handling to prevent remote crashes.
+- [vLLM](https://github.com/vllm-project/vllm/pull/43117) - Routed multimodal media fetching through existing security controls.
+- [Tink](https://github.com/tink-crypto/tink-py/pull/76) - Rejected JWK Sets with duplicate JSON keys.
+- [Google Bumble](https://github.com/google/bumble/pull/912) - Validated malformed protocol input to prevent crashes.
+- [InterUSS DSS](https://github.com/interuss/dss/pull/1788) - Enforced request-level authorization scopes for subscription notifications.
 
 [More merged upstream pull requests](https://github.com/pulls?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1)
 
-## Security engineering projects
+## Research tools and engineering projects
 
-- **[Security Anomaly ML](https://github.com/ibondarenko1/security-anomaly-ml)**: Network-flow anomaly detection with deterministic analyst-facing incidents, causal feature processing, a versioned output format, and reproducible tests. Research/evaluation release, not presented as production-ready.
-- **[Microsoft Sentinel Detection Engineering](https://github.com/ibondarenko1/azure-sentinel-detection-engineering)**: MITRE ATT&CK-mapped KQL detections, controlled validation, incident evidence, and PR-gated Detection-as-Code deployment.
-- **[LLM Serving Security](https://github.com/ibondarenko1/llm-serving-security)**: Research reference for vulnerability classes and hardening across popular model-serving stacks.
+- **[Tink Cross-Port Fuzz](https://github.com/ibondarenko1/tink-cross-port-fuzz)** - Differential testing of JWK Set handling across Tink language ports.
+- **[Security Anomaly ML](https://github.com/ibondarenko1/security-anomaly-ml)** - Network-flow anomaly detection with a versioned incident format, CLI, Docker image, and reproducible tests. Research and evaluation release.
+- **[Microsoft Sentinel Detection Engineering](https://github.com/ibondarenko1/azure-sentinel-detection-engineering)** - MITRE ATT&CK-mapped KQL detections with controlled validation and PR-gated deployment.
+- **[LLM Serving Security](https://github.com/ibondarenko1/llm-serving-security)** - Reference material for vulnerability classes and hardening across model-serving stacks.
 
 <!-- CVE_LIST:START -->
 ## Published CVEs
@@ -61,7 +60,7 @@ Verified public advisory links for each published CVE.
 - [CVE-2026-91191](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01) · **Lantronix G520**: Improper cryptographic signature verification of update packages.
 <!-- CVE_LIST:END -->
 
-## Methods & background
+## Methods and background
 
 Source and firmware analysis, reverse engineering, protocol review, trust-boundary mapping, negative controls, and reproducible vulnerability validation. Operational experience includes Microsoft Sentinel and Defender XDR, KQL, Sigma, Security Onion, Suricata, Zeek, Python, and PowerShell.
 
@@ -69,6 +68,6 @@ Source and firmware analysis, reverse engineering, protocol review, trust-bounda
 
 ## Connect
 
-Sacramento, California · Open to remote vulnerability research and security engineering roles.
+Roseville, California · Open to remote vulnerability research and security engineering roles.
 
 [Website](https://ibondarenko.com) · [LinkedIn](https://www.linkedin.com/in/ievgen-bondarenko-b13098241/) · [Email](mailto:hi@ibondarenko.com)
