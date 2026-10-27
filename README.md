@@ -10,7 +10,7 @@ I research security boundaries in AI infrastructure, industrial devices, and ope
 <!-- BADGES:START -->
 <p>
   <a href="https://github.com/ibondarenko1/ibondarenko1#published-cves"><img alt="8 CVEs published" src="https://img.shields.io/badge/CVEs%20Published-8-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
-  <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01"><img alt="CISA ICS Advisory ICSA-26-272-01" src="https://img.shields.io/badge/CISA%20ICS-ICSA--26--272--01-005ea2?style=flat-square&labelColor=222"></a>
+  <a href="https://github.com/ibondarenko1/ibondarenko1#cisa-ics-advisories"><img alt="2 CISA ICS advisories with researcher credit" src="https://img.shields.io/badge/CISA%20ICS%20Advisories-2-005ea2?style=flat-square&labelColor=222"></a>
   <a href="https://github.com/search?q=type%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1&type=pullrequests"><img alt="25 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-25-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
 </p>
 <!-- BADGES:END -->
@@ -19,8 +19,19 @@ I research security boundaries in AI infrastructure, industrial devices, and ope
 
 - **[gVisor](https://github.com/google/gvisor/pull/12927)** - Fixed a time-of-check/time-of-use bug in shared-memory ThreadID handling. Merged upstream.
 - **[Swift Package Manager](https://github.com/swiftlang/swift-package-manager/pull/10001)** - Added validation to reject extracted archives with symlinks that escape the destination directory. Merged upstream.
-- **[Moxa AIG-302](https://www.moxa.com/en/support/product-support/security-advisory/mpsa-262560-cve-2026-109812,-cve-2026-109813-vulnerabilities-in-industrial-computing-products)** - Reported missing authorization and a shared root CA private key. Two published CVEs, vendor acknowledgement, and a firmware fix.
+- **[Moxa AIG-302](https://www.cisa.gov/news-events/ics-advisories/icsa-26-293-03)** - Reported missing authorization and a shared root CA private key. Two published CVEs, researcher credit in CISA ICSA-26-293-03, and a firmware fix.
 - **[Lantronix G520](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01)** - Reported update and package-authenticity flaws. Two published CVEs, researcher credit in CISA ICSA-26-272-01, and vendor remediation.
+
+<!-- CISA_LIST:START -->
+## CISA ICS advisories
+
+Researcher credit in the following CISA advisories.
+
+| Product | Advisory | Published |
+| --- | --- | --- |
+| Lantronix G520 Series Cellular Gateway | [ICSA-26-272-01](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01) | 2026-09-29 |
+| Moxa AIG-302 ThingsPro Edge | [ICSA-26-293-03](https://www.cisa.gov/news-events/ics-advisories/icsa-26-293-03) | 2026-10-20 |
+<!-- CISA_LIST:END -->
 
 ## AI and distributed systems research
 
