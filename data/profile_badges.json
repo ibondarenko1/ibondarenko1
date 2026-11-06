@@ -16,15 +16,21 @@
       },
       {
         "id": "CVE-2026-110021",
-        "source": "https://www.cve.org/CVERecord?id=CVE-2026-110021"
+        "source": "https://www.certvde.com/en/advisories/VDE-2026-121/",
+        "product": "Phoenix Contact PLCnext Engineer",
+        "summary": "Missing cryptographic verification of XML SignatureValue in signed GSDX device-description packages."
       },
       {
         "id": "CVE-2026-110022",
-        "source": "https://www.cve.org/CVERecord?id=CVE-2026-110022"
+        "source": "https://www.certvde.com/en/advisories/VDE-2026-121/",
+        "product": "Phoenix Contact PLCnext Engineer",
+        "summary": "Plugin signature-validation bypass allowing an unsigned replacement DLL to be loaded."
       },
       {
         "id": "CVE-2026-110935",
-        "source": "https://www.cve.org/CVERecord?id=CVE-2026-110935"
+        "source": "https://www.certvde.com/en/advisories/VDE-2026-121/",
+        "product": "Phoenix Contact PLCnext Engineer",
+        "summary": "Path traversal during plugin extraction allowing writes outside the plugin repository."
       },
       {
         "id": "CVE-2026-46517",
