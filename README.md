@@ -20,6 +20,7 @@ I research security boundaries in AI infrastructure, industrial devices, and ope
 - **[gVisor](https://github.com/google/gvisor/pull/12927)** - Fixed a time-of-check/time-of-use bug in shared-memory ThreadID handling. Merged upstream.
 - **[Swift Package Manager](https://github.com/swiftlang/swift-package-manager/pull/10001)** - Added validation to reject extracted archives with symlinks that escape the destination directory. Merged upstream.
 - **[Moxa AIG-302](https://www.cisa.gov/news-events/ics-advisories/icsa-26-293-03)** - Reported missing authorization and a shared root CA private key. Two published CVEs, researcher credit in CISA ICSA-26-293-03, and a firmware fix.
+- **[Phoenix Contact PLCnext Engineer](https://www.certvde.com/en/advisories/VDE-2026-121/)** - Disclosed three vulnerabilities in engineering-software package and plugin trust boundaries: incomplete GSDX signature verification, plugin signature bypass, and path traversal. Published as CVE-2026-110021, CVE-2026-110022, and CVE-2026-110935; credited in CERT@VDE VDE-2026-121. Fixed in version 2026.6.
 - **[Lantronix G520](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01)** - Reported update and package-authenticity flaws. Two published CVEs, researcher credit in CISA ICSA-26-272-01, and vendor remediation.
 
 <!-- CISA_LIST:START -->
@@ -63,9 +64,9 @@ Verified public advisory links for each published CVE.
 
 - [CVE-2026-109812](https://www.moxa.com/en/support/product-support/security-advisory/mpsa-262560-cve-2026-109812,-cve-2026-109813-vulnerabilities-in-industrial-computing-products) · **Moxa AIG-302**: Missing authorization on the secrets API.
 - [CVE-2026-109813](https://www.moxa.com/en/support/product-support/security-advisory/mpsa-262560-cve-2026-109812,-cve-2026-109813-vulnerabilities-in-industrial-computing-products) · **Moxa AIG-302**: Shared hard-coded root CA private key.
-- [CVE-2026-110021](https://www.cve.org/CVERecord?id=CVE-2026-110021)
-- [CVE-2026-110022](https://www.cve.org/CVERecord?id=CVE-2026-110022)
-- [CVE-2026-110935](https://www.cve.org/CVERecord?id=CVE-2026-110935)
+- [CVE-2026-110021](https://www.certvde.com/en/advisories/VDE-2026-121/) · **Phoenix Contact PLCnext Engineer**: Missing cryptographic verification of XML SignatureValue in signed GSDX device-description packages.
+- [CVE-2026-110022](https://www.certvde.com/en/advisories/VDE-2026-121/) · **Phoenix Contact PLCnext Engineer**: Plugin signature-validation bypass allowing an unsigned replacement DLL to be loaded.
+- [CVE-2026-110935](https://www.certvde.com/en/advisories/VDE-2026-121/) · **Phoenix Contact PLCnext Engineer**: Path traversal during plugin extraction allowing writes outside the plugin repository.
 - [CVE-2026-46517](https://github.com/advisories/GHSA-9xq9-36w5-q796) · **LMDeploy**: Unsafe remote-code trust during model initialization.
 - [CVE-2026-64849](https://github.com/advisories/GHSA-7gwp-5pfp-969j) · **MLflow**: Unauthenticated webhook SSRF via redirects and DNS rebinding.
 - [CVE-2026-73560](https://github.com/advisories/GHSA-4hhp-h66f-j5j7) · **vLLM**: Multimodal media retrieval bypass enabling SSRF and local-file access.
