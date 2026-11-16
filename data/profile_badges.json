@@ -33,6 +33,13 @@
         "summary": "Path traversal during plugin extraction allowing writes outside the plugin repository."
       },
       {
+        "source": "https://github.com/mlflow/mlflow/security/advisories/GHSA-mr9f-g8qf-4w4j",
+        "product": "MLflow",
+        "summary": "SSRF through client-supplied artifact locations and model version sources.",
+        "credit": "reporter",
+        "id": "CVE-2026-118628"
+      },
+      {
         "id": "CVE-2026-46517",
         "source": "https://github.com/advisories/GHSA-9xq9-36w5-q796",
         "product": "LMDeploy",
@@ -83,6 +90,23 @@
         "product": "Moxa AIG-302 ThingsPro Edge",
         "published_at": "2026-10-20",
         "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-293-03"
+      }
+    ]
+  },
+  "advisory_sources": {
+    "github_repositories": [
+      "mlflow/mlflow"
+    ],
+    "opc_foundation_csaf": true
+  },
+  "published_advisories": {
+    "entries": [
+      {
+        "id": "GCVE-105-2026-011",
+        "source": "https://github.com/OPCFoundation/OPC-SecurityAdvisories/blob/latest/csaf/2026/011/README.md",
+        "product": "OPC UA .NET Standard Stack",
+        "summary": "A sessionless Call can read a Machinery result file handle that belongs to another session.",
+        "published_at": "2026-11-13"
       }
     ]
   },

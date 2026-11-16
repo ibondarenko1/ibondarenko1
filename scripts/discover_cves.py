@@ -23,7 +23,8 @@ LOOKBACK_DAYS = 3
 TRANSIENT_HTTP = {429, 500, 502, 503, 504}
 
 
-def get(url, accept="application/vnd.github+json", attempts=5):
+def get(url, accept="application/vnd.github+json", attempts=5,
+        authenticated=True, with_headers=False):
     """Fetch a URL, retrying bounded transient server and rate-limit errors."""
     for attempt in range(attempts):
         req = urllib.request.Request(
@@ -35,11 +36,12 @@ def get(url, accept="application/vnd.github+json", attempts=5):
             },
         )
         token = os.environ.get("GITHUB_TOKEN", "")
-        if token and url.startswith("https://api.github.com/"):
+        if authenticated and token and url.startswith("https://api.github.com/"):
             req.add_header("Authorization", "Bearer " + token)
         try:
             with urllib.request.urlopen(req, timeout=60) as response:
-                return response.read()
+                payload = response.read()
+                return (payload, response.headers) if with_headers else payload
         except urllib.error.HTTPError as error:
             if error.code not in TRANSIENT_HTTP or attempt + 1 == attempts:
                 raise

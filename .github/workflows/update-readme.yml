@@ -23,6 +23,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/discover_cves.py
 
+      - name: Discover public vendor advisory credits
+        run: python3 scripts/discover_advisories.py
+
       - name: Regenerate dynamic README sections
         run: python3 scripts/update_readme.py
 

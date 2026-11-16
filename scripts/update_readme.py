@@ -2,8 +2,8 @@
 """Regenerate the GitHub profile README's badges and public research indexes.
 
 BADGES shows published CVE count, credited CISA advisories, and merged upstream
-PRs. CVE_LIST and CISA_LIST use the same reviewed public-source registry.
-Both indexes are delimited by markers in README.md and updated together.
+PRs. CVE_LIST, CISA_LIST, and ADVISORY_LIST use the public-source registry.
+These indexes are delimited by markers in README.md and updated together.
 """
 from datetime import date
 import json
@@ -103,6 +103,19 @@ def profile_badges():
                        for field in ("product", "summary")):
                 raise ValueError("Empty product or summary for " + cve)
         ids.add(cve)
+    for entry in config.get("published_advisories", {}).get("entries", []):
+        advisory = entry["id"]
+        if not re.fullmatch(r"(?:GCVE-[0-9]+-[0-9]{4}-[0-9]+|GHSA-[a-z0-9-]+)", advisory):
+            raise ValueError("Invalid vendor advisory ID: " + advisory)
+        if advisory in ids:
+            raise ValueError("Duplicate vendor advisory ID: " + advisory)
+        ids.add(advisory)
+        if not entry["source"].startswith("https://"):
+            raise ValueError("Missing HTTPS advisory source")
+        if not all(isinstance(entry.get(field), str) and entry[field].strip()
+                   for field in ("product", "summary", "published_at")):
+            raise ValueError("Missing vendor advisory metadata")
+        date.fromisoformat(entry["published_at"])
     return config
 
 
@@ -159,11 +172,28 @@ def build_cve_list():
     """
     entries = profile_badges()["published_cves"]["entries"]
     rows = ["## Published CVEs", "",
-            "Verified public advisory links for each published CVE.", ""]
+            "Published CVEs with public researcher credit. Listed roles follow the source advisory.", ""]
     for item in sorted(entries, key=lambda row: row["id"]):
         line = "- [" + item["id"] + "](" + item["source"] + ")"
         if item.get("product") and item.get("summary"):
             line += " · **" + item["product"] + "**: " + item["summary"]
+        if item.get("credit"):
+            line += " Credit: " + item["credit"] + "."
+        rows.append(line)
+    return "\n".join(rows)
+
+
+def build_advisory_list(config=None):
+    """Show credited vendor publications independently of the CVE count."""
+    config = config or profile_badges()
+    rows = ["## Published vendor advisories", "",
+            "Public advisories acknowledging my research.", ""]
+    for item in config.get("published_advisories", {}).get("entries", []):
+        line = ("- [" + item["id"] + "](" + item["source"] + ") · **"
+                + item["product"] + "**: " + item["summary"]
+                + " Published " + item["published_at"] + ".")
+        if item.get("cve"):
+            line += " Associated CVE: " + item["cve"] + "."
         rows.append(line)
     return "\n".join(rows)
 
@@ -195,6 +225,7 @@ def main():
     updated = replace_block(original, "BADGES", build_badges_block())
     updated = replace_block(updated, "CISA_LIST", build_cisa_list())
     updated = replace_block(updated, "CVE_LIST", build_cve_list())
+    updated = replace_block(updated, "ADVISORY_LIST", build_advisory_list())
     if updated == original:
         print("README.md already up to date.")
         return
