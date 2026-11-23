@@ -15,15 +15,14 @@ import update_readme
 
 
 class UpdateReadmeTests(unittest.TestCase):
-    def test_profile_evidence_counts_each_activity_independently(self):
+    def test_profile_evidence_counts_published_activity_independently(self):
         config = update_readme.profile_badges()
         original_counts = [len(config["published_cves"]["entries"]),
                            config["merged_prs"]["count"],
-                           config["cisa_coordination"]["active_cases"],
                            len(config["cisa_ics"]["entries"])]
-        targets = ("published-cves", "merged-pull-requests",
-                   "cisa-coordination", "cisa-ics-advisories")
-        for changed in range(4):
+        labels = ("published CVEs", "merged pull requests", "published CISA ICS advisories")
+        targets = ("published-cves", "merged-pull-requests", "cisa-ics-advisories")
+        for changed in range(3):
             with self.subTest(changed=targets[changed]):
                 varied = deepcopy(config)
                 counts = original_counts.copy()
@@ -33,22 +32,17 @@ class UpdateReadmeTests(unittest.TestCase):
                 elif changed == 1:
                     varied["merged_prs"]["entries"].pop()
                     varied["merged_prs"]["count"] -= 1
-                elif changed == 2:
-                    varied["cisa_coordination"]["active_cases"] -= 1
                 else:
                     varied["cisa_ics"]["entries"].pop()
                 block = update_readme.build_profile_evidence(varied)
-                self.assertTrue(block.startswith("## Results\n"))
-                expected_row = "| " + " | ".join(
-                    f"**[{count}](#{target})**"
-                    for count, target in zip(counts, targets)) + " |"
-                self.assertIn(expected_row, block)
-                self.assertIn(varied["merged_prs"]["verified_at"], block)
-                self.assertIn(varied["cisa_coordination"]["last_verified"], block)
+                expected = " · ".join(
+                    f"**[{count} {label}](RESEARCH.md#{target})**"
+                    for count, label, target in zip(counts, labels, targets))
+                self.assertEqual(block, expected)
+                self.assertNotIn("verified", block.lower())
+        original = update_readme.build_profile_evidence(config)
         config["published_advisories"]["entries"] = []
-        block = update_readme.build_profile_evidence(config)
-        self.assertIn("[0 vendor advisories]", block)
-        self.assertIn(f"**[{original_counts[0]}](#published-cves)**", block)
+        self.assertEqual(update_readme.build_profile_evidence(config), original)
 
     def test_generation_updates_both_documents_and_preserves_editorial_text(self):
         config = update_readme.profile_badges()
@@ -84,18 +78,15 @@ class UpdateReadmeTests(unittest.TestCase):
                 expected_readme = update_readme.replace_block(
                     original_readme, "PROFILE_EVIDENCE",
                     update_readme.build_profile_evidence(config))
-                expected_readme = update_readme.replace_block(
-                    expected_readme, "PROFILE_RECORD", update_readme.build_profile_record(config))
                 self.assertEqual(generated_readme, expected_readme)
                 for entry in (new_cve, new_advisory):
                     link = f"[{entry['id']}]({entry['source']})"
                     self.assertEqual(generated_research.count(link), 1)
-                    self.assertEqual(generated_readme.count(link), 1)
-                self.assertEqual(generated_readme.count(
+                    self.assertNotIn(link, generated_readme)
+                self.assertEqual(generated_research.count(
                     "[example/project#123](" + new_pr["url"] + ")"), 1)
-                active = config["cisa_coordination"]["active_cases"]
+                self.assertNotIn(new_pr["url"], generated_readme)
                 published = len(config["cisa_ics"]["entries"])
-                self.assertIn(f"{active} active vulnerability coordination cases", generated_research)
                 self.assertIn(f"Researcher credit in {published} published CISA ICS advisories.", generated_research)
                 self.assertNotIn("img.shields.io", generated_readme)
                 update_readme.main()
@@ -108,22 +99,23 @@ class UpdateReadmeTests(unittest.TestCase):
             {"id": "CVE-2099-10000", "source": "https://example.test/cve"})
         good_readme = (ROOT / "README.md").read_text(encoding="utf-8")
         good_research = (ROOT / "RESEARCH.md").read_text(encoding="utf-8")
-        start, end = "<!-- PROFILE_RECORD:START -->", "<!-- PROFILE_RECORD:END -->"
-        evidence_end = "<!-- PROFILE_EVIDENCE:END -->"
+        start, end = "<!-- PROFILE_EVIDENCE:START -->", "<!-- PROFILE_EVIDENCE:END -->"
+        cisa_end = "<!-- CISA_LIST:END -->"
+        pr_start, pr_end = "<!-- PR_LIST:START -->", "<!-- PR_LIST:END -->"
         reversed_readme = good_readme.replace(start, "TEMP_MARKER").replace(
             end, start).replace("TEMP_MARKER", end)
-        crossed_readme = good_readme.replace(evidence_end, "").replace(
-            start, start + "\n" + evidence_end)
-        nested_readme = good_readme.replace(evidence_end, "").replace(
-            end, end + "\n" + evidence_end)
+        crossed_research = good_research.replace(cisa_end, "").replace(
+            pr_start, pr_start + "\n" + cisa_end)
+        nested_research = good_research.replace(cisa_end, "").replace(
+            pr_end, pr_end + "\n" + cisa_end)
         cases = [
-            ("missing", good_readme.replace(end, ""), good_research, "PROFILE_RECORD"),
-            ("duplicate", good_readme + start + end, good_research, "PROFILE_RECORD"),
-            ("reversed", reversed_readme, good_research, "PROFILE_RECORD"),
-            ("crossed", crossed_readme, good_research, "overlap"),
-            ("nested", nested_readme, good_research, "overlap"),
+            ("missing", good_readme.replace(end, ""), good_research, "PROFILE_EVIDENCE"),
+            ("duplicate", good_readme + start + end, good_research, "PROFILE_EVIDENCE"),
+            ("reversed", reversed_readme, good_research, "PROFILE_EVIDENCE"),
+            ("crossed", good_readme, crossed_research, "overlap"),
+            ("nested", good_readme, nested_research, "overlap"),
             ("appendix", good_readme, good_research.replace(
-                "<!-- ADVISORY_LIST:END -->", ""), "ADVISORY_LIST"),
+                "<!-- PR_LIST:END -->", ""), "PR_LIST"),
         ]
         for case, original_readme, original_research, error in cases:
             with self.subTest(case=case), tempfile.TemporaryDirectory() as directory:
@@ -144,20 +136,19 @@ class UpdateReadmeTests(unittest.TestCase):
                 self.assertEqual(readme.read_text(encoding="utf-8"), original_readme)
                 self.assertEqual(research.read_text(encoding="utf-8"), original_research)
 
-    def test_complete_record_contains_every_entry_and_no_nested_markers(self):
+    def test_complete_indexes_contain_every_entry(self):
         config = update_readme.profile_badges()
         config["merged_prs"]["entries"][0]["title"] = "Fix [bounds] <input> | `test`"
-        record = update_readme.build_profile_record(config)
-        self.assertEqual(record.count("<details>"), 3)
-        self.assertIn(f"All {len(config['published_cves']['entries'])} published CVEs", record)
-        self.assertIn(f"All {len(config['published_advisories']['entries'])} vendor advisories", record)
-        self.assertIn(f"All {config['merged_prs']['count']} merged pull requests", record)
+        for section, builder in (("published_cves", update_readme.build_cve_list),
+                                 ("published_advisories", update_readme.build_advisory_list)):
+            block = builder(config)
+            for entry in config[section]["entries"]:
+                self.assertEqual(block.count(f"[{entry['id']}]({entry['source']})"), 1)
+        record = update_readme.build_merged_pr_list(config)
+        self.assertTrue(record.startswith("## Merged pull requests"))
         self.assertNotIn("<!--", record)
         self.assertIn(r"Fix \[bounds\] &lt;input&gt; \| \`test\`", record)
         self.assertIn("code, tests, documentation, detection queries, resource entries, and workflow experiments", record)
-        for section in ("published_cves", "published_advisories"):
-            for entry in config[section]["entries"]:
-                self.assertEqual(record.count(f"[{entry['id']}]({entry['source']})"), 1)
         for entry in config["merged_prs"]["entries"]:
             self.assertEqual(record.count(f"({entry['url']})"), 1)
             self.assertIn(entry.get("merged_at", "")[:10], record)
@@ -189,8 +180,7 @@ class UpdateReadmeTests(unittest.TestCase):
     def test_cisa_list_links_each_advisory(self):
         config = update_readme.profile_badges()
         block = update_readme.build_cisa_list(config)
-        self.assertTrue(block.startswith("## CISA coordination"))
-        self.assertIn("### CISA ICS advisories", block)
+        self.assertTrue(block.startswith("## CISA ICS advisories"))
         for entry in update_readme.cisa_advisories(config):
             self.assertEqual(
                 block.count("[" + entry["advisory"] + "](" + entry["url"] + ")"),
@@ -198,27 +188,31 @@ class UpdateReadmeTests(unittest.TestCase):
             )
             self.assertIn(entry["published_at"], block)
 
-    def test_active_coordination_count_is_independent_of_public_advisories(self):
-        config = deepcopy(update_readme.profile_badges())
-        published_count = len(config["cisa_ics"]["entries"])
-        for active_count in (7, 3):
-            with self.subTest(active_count=active_count):
-                config["cisa_coordination"]["active_cases"] = active_count
-                section = update_readme.build_cisa_list(config)
-                self.assertIn(f"{active_count} active vulnerability coordination cases", section)
-                self.assertIn(f"Researcher credit in {published_count} published CISA ICS advisories.", section)
-                self.assertIn(config["cisa_coordination"]["last_verified"], section)
-
-    def test_coordination_rejects_invalid_counts_and_review_dates(self):
-        config = deepcopy(update_readme.profile_badges())
-        for field, value in (("active_cases", True), ("active_cases", -1),
-                             ("last_verified", "2026-02-30"),
-                             ("last_verified", "not a date")):
-            with self.subTest(field=field, value=value):
-                invalid = deepcopy(config)
-                invalid["cisa_coordination"][field] = value
-                with self.assertRaises(ValueError):
-                    update_readme.cisa_coordination(invalid)
+    def test_private_coordination_is_rejected_and_never_rendered(self):
+        config = update_readme.profile_badges()
+        self.assertNotIn("cisa_coordination", config)
+        legacy = deepcopy(config)
+        legacy["cisa_coordination"] = {
+            "active_cases": 999999,
+            "last_verified": "2099-12-31",
+            "source": "PRIVATE_TEST_SENTINEL",
+        }
+        for builder in (update_readme.build_profile_evidence,
+                        update_readme.build_merged_pr_list,
+                        update_readme.build_cve_list,
+                        update_readme.build_advisory_list,
+                        update_readme.build_cisa_list):
+            with self.subTest(builder=builder.__name__):
+                output = builder(legacy)
+                self.assertEqual(output, builder(config))
+                for private_value in ("999999", "2099-12-31", "PRIVATE_TEST_SENTINEL"):
+                    self.assertNotIn(private_value, output)
+        with tempfile.TemporaryDirectory() as directory:
+            registry = pathlib.Path(directory) / "profile_badges.json"
+            registry.write_text(json.dumps(legacy), encoding="utf-8")
+            with patch.object(update_readme, "PROFILE_BADGES", str(registry)):
+                with self.assertRaisesRegex(ValueError, "Private coordination data"):
+                    update_readme.profile_badges()
 
     def test_cisa_registry_rejects_duplicate_ids(self):
         config = update_readme.profile_badges()

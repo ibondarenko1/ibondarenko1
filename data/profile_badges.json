@@ -89,11 +89,6 @@
       }
     ]
   },
-  "cisa_coordination": {
-    "active_cases": 7,
-    "last_verified": "2026-11-23",
-    "source": "CISA VINCE-NT dashboard and case list, manually reviewed."
-  },
   "cisa_ics": {
     "entries": [
       {
