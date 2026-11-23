@@ -59,7 +59,9 @@
       },
       {
         "id": "CVE-2026-80466",
-        "source": "https://www.cve.org/CVERecord?id=CVE-2026-80466"
+        "source": "https://certvde.com/en/advisories/VDE-2026-096/",
+        "product": "WAGO Controllers and Touch Panels",
+        "summary": "Stored command injection in WBM routing configuration, executed by a privileged helper."
       },
       {
         "id": "CVE-2026-84173",
@@ -75,7 +77,9 @@
       },
       {
         "id": "CVE-2026-88850",
-        "source": "https://www.cve.org/CVERecord?id=CVE-2026-88850"
+        "source": "https://certvde.com/en/advisories/VDE-2026-096/",
+        "product": "WAGO Controllers and Touch Panels",
+        "summary": "Missing authorization allows authenticated users to modify root-owned PROFIBUS configuration."
       },
       {
         "id": "CVE-2026-91191",
@@ -103,7 +107,8 @@
   },
   "advisory_sources": {
     "github_repositories": [
-      "mlflow/mlflow"
+      "mlflow/mlflow",
+      "BerriAI/litellm"
     ],
     "opc_foundation_csaf": true
   },
@@ -115,6 +120,14 @@
         "product": "OPC UA .NET Standard Stack",
         "summary": "A sessionless Call can read a Machinery result file handle that belongs to another session.",
         "published_at": "2026-11-13"
+      },
+      {
+        "id": "GHSA-28j3-9x3h-556f",
+        "source": "https://github.com/BerriAI/litellm/security/advisories/GHSA-28j3-9x3h-556f",
+        "product": "LiteLLM",
+        "summary": "Unauthenticated public MCP hub exposed registered server metadata and internal target URLs. Fixed in 1.89.0.",
+        "published_at": "2026-11-23",
+        "credit": "reporter"
       }
     ]
   },

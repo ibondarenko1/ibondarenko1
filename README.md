@@ -17,6 +17,7 @@ I research security boundaries in AI infrastructure, industrial devices, and ope
 
 ## Selected research and contributions
 
+- **[WAGO Controllers and Touch Panels](https://certvde.com/en/advisories/VDE-2026-096/)** - Reported stored command injection in routing configuration and missing authorization for PROFIBUS settings. Published as CVE-2026-80466 and CVE-2026-88850, with researcher credit in CERT@VDE VDE-2026-096. Fixed in firmware 4.10.0 (FW32).
 - **[gVisor](https://github.com/google/gvisor/pull/12927)** - Fixed a time-of-check/time-of-use bug in shared-memory ThreadID handling. Merged upstream.
 - **[Swift Package Manager](https://github.com/swiftlang/swift-package-manager/pull/10001)** - Added validation to reject extracted archives with symlinks that escape the destination directory. Merged upstream.
 - **[Moxa AIG-302](https://www.cisa.gov/news-events/ics-advisories/icsa-26-293-03)** - Reported missing authorization and a shared root CA private key. Two published CVEs, researcher credit in CISA ICSA-26-293-03, and a firmware fix.
@@ -36,7 +37,8 @@ Researcher credit in the following CISA advisories.
 
 ## AI and distributed systems research
 
-- **[MLflow](https://github.com/advisories/GHSA-7gwp-5pfp-969j)** - Unauthenticated full-read SSRF in webhook delivery.
+- **[LiteLLM](https://github.com/BerriAI/litellm/security/advisories/GHSA-28j3-9x3h-556f)** - Reported unauthenticated exposure of registered MCP server metadata and internal target URLs through the public MCP hub. Credited as reporter; fixed in 1.89.0.
+- **[MLflow](https://github.com/advisories/GHSA-7gwp-5pfp-969j)** - Unauthenticated full-read SSRF in webhook delivery (CVE-2026-64849), plus [SSRF through client-supplied artifact locations and model version sources](https://github.com/mlflow/mlflow/security/advisories/GHSA-mr9f-g8qf-4w4j) (CVE-2026-118628, reporter credit).
 - **[Eclipse Ankaios](https://www.cve.org/CVERecord?id=CVE-2026-84173)** - Authorization bypass outside an allowed cluster-state subtree.
 - **[vLLM](https://github.com/advisories/GHSA-4hhp-h66f-j5j7)** - Multimodal media retrieval controls bypassed, allowing SSRF and local-file access.
 - **[LMDeploy](https://github.com/advisories/GHSA-9xq9-36w5-q796)** - Unsafe remote-code trust during model initialization.
@@ -71,10 +73,10 @@ Published CVEs with public researcher credit. Listed roles follow the source adv
 - [CVE-2026-46517](https://github.com/advisories/GHSA-9xq9-36w5-q796) · **LMDeploy**: Unsafe remote-code trust during model initialization.
 - [CVE-2026-64849](https://github.com/advisories/GHSA-7gwp-5pfp-969j) · **MLflow**: Unauthenticated webhook SSRF via redirects and DNS rebinding.
 - [CVE-2026-73560](https://github.com/advisories/GHSA-4hhp-h66f-j5j7) · **vLLM**: Multimodal media retrieval bypass enabling SSRF and local-file access.
-- [CVE-2026-80466](https://www.cve.org/CVERecord?id=CVE-2026-80466)
+- [CVE-2026-80466](https://certvde.com/en/advisories/VDE-2026-096/) · **WAGO Controllers and Touch Panels**: Stored command injection in WBM routing configuration, executed by a privileged helper.
 - [CVE-2026-84173](https://www.cve.org/CVERecord?id=CVE-2026-84173) · **Eclipse Ankaios**: Authorization bypass in Control Interface workload rules.
 - [CVE-2026-84409](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01) · **Lantronix G520**: Cross-site scripting through update metadata.
-- [CVE-2026-88850](https://www.cve.org/CVERecord?id=CVE-2026-88850)
+- [CVE-2026-88850](https://certvde.com/en/advisories/VDE-2026-096/) · **WAGO Controllers and Touch Panels**: Missing authorization allows authenticated users to modify root-owned PROFIBUS configuration.
 - [CVE-2026-91191](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01) · **Lantronix G520**: Improper cryptographic signature verification of update packages.
 <!-- CVE_LIST:END -->
 
@@ -84,11 +86,12 @@ Published CVEs with public researcher credit. Listed roles follow the source adv
 Public advisories acknowledging my research.
 
 - [GCVE-105-2026-011](https://github.com/OPCFoundation/OPC-SecurityAdvisories/blob/latest/csaf/2026/011/README.md) · **OPC UA .NET Standard Stack**: A sessionless Call can read a Machinery result file handle that belongs to another session. Published 2026-11-13.
+- [GHSA-28j3-9x3h-556f](https://github.com/BerriAI/litellm/security/advisories/GHSA-28j3-9x3h-556f) · **LiteLLM**: Unauthenticated public MCP hub exposed registered server metadata and internal target URLs. Fixed in 1.89.0. Published 2026-11-23.
 <!-- ADVISORY_LIST:END -->
 
 ## Methods and background
 
-Source and firmware analysis, reverse engineering, protocol review, trust-boundary mapping, negative controls, and reproducible vulnerability validation. Operational experience includes Microsoft Sentinel and Defender XDR, KQL, Sigma, Security Onion, Suricata, Zeek, Python, and PowerShell.
+Product security research across AI infrastructure, industrial software, and connected systems. Methods include source and firmware analysis, reverse engineering, protocol review, trust-boundary mapping, negative controls, and reproducible vulnerability validation. I build isolated test environments, document impact and remediation, and coordinate fixes with vendors and open-source maintainers. Python and PowerShell support testing and automation.
 
 **Certifications:** Microsoft Certified: Security Operations Analyst Associate (SC-200) · CompTIA Security+
 
