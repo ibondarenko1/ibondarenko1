@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Refresh the profile's results and complete public research records.
 
-README.md includes linked counts and expandable CVE, advisory, and PR indexes.
-RESEARCH.md retains its CVE/advisory indexes and dated coordination aggregate.
+README.md includes compact linked counts for published work.
+RESEARCH.md retains complete indexes of published CVEs, advisories, and PRs.
 Only marked sections are regenerated; the surrounding text is preserved.
 """
 from datetime import date, datetime
@@ -62,11 +62,12 @@ def profile_badges():
     """
     with open(PROFILE_BADGES, encoding="utf-8") as handle:
         config = json.load(handle)
+    if "cisa_coordination" in config:
+        raise ValueError("Private coordination data does not belong in the public registry")
     cisa_config = config.get("cisa_ics")
     if not isinstance(cisa_config, dict):
         raise ValueError("Missing CISA advisory registry")
     validate_cisa_advisories(cisa_config.get("entries"))
-    cisa_coordination(config)
     merged_prs(config)
     entries = config["published_cves"]["entries"]
     ids = set()
@@ -108,26 +109,6 @@ def cisa_advisories(config=None):
     config = config or profile_badges()
     return validate_cisa_advisories(config["cisa_ics"]["entries"])
 
-
-def cisa_coordination(config=None):
-    """Return the reviewed aggregate without exposing private case details."""
-    entry = (config or profile_badges()).get("cisa_coordination")
-    if not isinstance(entry, dict):
-        raise ValueError("Missing CISA coordination aggregate")
-    count = entry.get("active_cases")
-    if isinstance(count, bool) or not isinstance(count, int) or count < 0:
-        raise ValueError("Invalid active CISA case count")
-    verified = entry.get("last_verified")
-    if not isinstance(verified, str) or not re.fullmatch(
-            r"[0-9]{4}-[0-9]{2}-[0-9]{2}", verified):
-        raise ValueError("Invalid CISA coordination verification date")
-    try:
-        date.fromisoformat(verified)
-    except ValueError as exc:
-        raise ValueError("Invalid CISA coordination verification date") from exc
-    if not isinstance(entry.get("source"), str) or not entry["source"].strip():
-        raise ValueError("Missing CISA coordination review source")
-    return entry
 
 
 def merged_prs(config=None):
@@ -190,28 +171,16 @@ def markdown_text(value):
 
 
 def build_profile_evidence(config=None):
-    """Show independent counts with links to their complete records."""
+    """Show compact counts linking to complete public records."""
     config = config or profile_badges()
     cve_count = len(config["published_cves"]["entries"])
     prs = merged_prs(config)
-    coordination = cisa_coordination(config)
     cisa_count = len(cisa_advisories(config))
-    advisories = config.get("published_advisories", {}).get("entries", [])
-    products = "; ".join(dict.fromkeys(
-        markdown_text(entry["product"]) for entry in advisories))
-    rows = ["## Results", "",
-            "| Published CVEs | Merged pull requests | Active CISA cases | Published CISA ICS advisories |",
-            "| --- | --- | --- | --- |",
-            f"| **[{cve_count}](#published-cves)** | "
-            f"**[{prs['count']}](#merged-pull-requests)** | "
-            f"**[{coordination['active_cases']}](#cisa-coordination)** | "
-            f"**[{cisa_count}](#cisa-ics-advisories)** |", "",
-            f"[{len(advisories)} vendor advisories](#published-vendor-advisories), "
-            "tracked separately from the CVE total"
-            + (": " + products if products else "") + ".", "",
-            "Merged pull requests verified " + prs["verified_at"]
-            + ". Active CISA cases verified " + coordination["last_verified"] + "."]
-    return "\n".join(rows)
+    return (
+        f"**[{cve_count} published CVEs](RESEARCH.md#published-cves)** · "
+        f"**[{prs['count']} merged pull requests](RESEARCH.md#merged-pull-requests)** · "
+        f"**[{cisa_count} published CISA ICS advisories](RESEARCH.md#cisa-ics-advisories)**"
+    )
 
 
 def build_cve_list(config=None):
@@ -273,37 +242,12 @@ def build_merged_pr_list(config=None):
     return "\n".join(rows)
 
 
-def build_profile_record(config=None):
-    """Keep complete inventories in the profile without nested block markers."""
-    config = config or profile_badges()
-    sections = [
-        (len(config["published_cves"]["entries"]), "published CVEs",
-         '<a name="published-cves"></a>\n\n',
-         build_cve_list(config)),
-        (len(config.get("published_advisories", {}).get("entries", [])),
-         "vendor advisories", '<a name="published-vendor-advisories"></a>\n\n',
-         build_advisory_list(config)),
-        (merged_prs(config)["count"], "merged pull requests",
-         '<a name="merged-pull-requests"></a>\n\n', build_merged_pr_list(config)),
-    ]
-    return "\n\n".join(
-        anchor + f"<details>\n<summary>All {count} {label}</summary>\n\n"
-        + body.partition("\n\n")[2] + "\n\n</details>"
-        for count, label, anchor, body in sections)
-
 
 def build_cisa_list(config=None):
-    """Show active coordination separately from published researcher credits."""
+    """Show only published CISA ICS advisories with researcher credit."""
     config = config or profile_badges()
-    coordination = cisa_coordination(config)
-    active_cases = coordination["active_cases"]
     advisories = cisa_advisories(config)
-    rows = ["## CISA coordination", "",
-            f"{active_cases} active vulnerability coordination "
-            + ("case" if active_cases == 1 else "cases")
-            + " through CISA VINCE-NT. Last verified "
-            + coordination["last_verified"] + ".", "",
-            "### CISA ICS advisories", "",
+    rows = ["## CISA ICS advisories", "",
             f"Researcher credit in {len(advisories)} published CISA ICS "
             + ("advisory" if len(advisories) == 1 else "advisories") + ".", "",
             "| Product | Advisory | Published |",
@@ -345,18 +289,18 @@ def main():
         original_readme = handle.read()
     with open(RESEARCH, encoding="utf-8") as handle:
         original_research = handle.read()
-    validate_blocks(original_readme, ("PROFILE_EVIDENCE", "PROFILE_RECORD"))
-    validate_blocks(original_research, ("CISA_LIST", "CVE_LIST", "ADVISORY_LIST"))
+    validate_blocks(original_readme, ("PROFILE_EVIDENCE",))
+    validate_blocks(original_research, ("CISA_LIST", "CVE_LIST", "ADVISORY_LIST", "PR_LIST"))
     updated_readme = replace_block(
         original_readme, "PROFILE_EVIDENCE", build_profile_evidence(config))
-    updated_readme = replace_block(
-        updated_readme, "PROFILE_RECORD", build_profile_record(config))
     updated_research = replace_block(
         original_research, "CISA_LIST", build_cisa_list(config))
     updated_research = replace_block(
         updated_research, "CVE_LIST", build_cve_list(config))
     updated_research = replace_block(
         updated_research, "ADVISORY_LIST", build_advisory_list(config))
+    updated_research = replace_block(
+        updated_research, "PR_LIST", build_merged_pr_list(config))
     # Validate every generated section before writing either document.
     for path, original, updated in (
             (README, original_readme, updated_readme),
