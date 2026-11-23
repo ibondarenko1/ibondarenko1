@@ -138,7 +138,184 @@
   },
   "merged_prs": {
     "count": 25,
-    "verified_at": "2026-10-22",
-    "url": "https://github.com/search?q=type%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1&type=pullrequests"
+    "verified_at": "2026-11-23",
+    "url": "https://github.com/search?q=is%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1&type=pullrequests",
+    "entries": [
+      {
+        "repository": "interuss/dss",
+        "title": "Enforce request-level scopes for SCD subscription notifications",
+        "url": "https://github.com/interuss/dss/pull/1788",
+        "merged_at": "2026-10-20T01:05:27Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "gvisor/gvisor",
+        "title": "nftables: validate csumOffset bounds in payloadSet evaluate",
+        "url": "https://github.com/gvisor/gvisor/pull/13161",
+        "merged_at": "2026-09-26T00:05:47Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "gvisor/gvisor",
+        "title": "cgroupfs: drop registry entries on filesystem release",
+        "url": "https://github.com/gvisor/gvisor/pull/13215",
+        "merged_at": "2026-09-25T22:26:45Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "ElNiak/awesome-ai-cybersecurity",
+        "title": "Add Security Anomaly ML",
+        "url": "https://github.com/ElNiak/awesome-ai-cybersecurity/pull/18",
+        "merged_at": "2026-08-21T07:32:54Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "firecrawl/firecrawl",
+        "title": "fix(self-host): make FoundationDB init idempotent",
+        "url": "https://github.com/firecrawl/firecrawl/pull/4274",
+        "merged_at": "2026-08-08T19:13:45Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "summitrange-security-lab/actions-workflow-fork-boundary-lab",
+        "title": "Add harmless fork workflow boundary canary",
+        "url": "https://github.com/summitrange-security-lab/actions-workflow-fork-boundary-lab/pull/1",
+        "merged_at": "2026-07-23T06:29:46Z",
+        "workflow_experiment": true
+      },
+      {
+        "repository": "summitrange-security-lab/actions-workflow-fork-boundary-lab",
+        "title": "Same-repository workflow boundary control",
+        "url": "https://github.com/summitrange-security-lab/actions-workflow-fork-boundary-lab/pull/2",
+        "merged_at": "2026-07-23T06:29:45Z",
+        "workflow_experiment": true
+      },
+      {
+        "repository": "vllm-project/vllm",
+        "title": "fix(processor): route MiMo-V2-Omni media fetch through MediaConnector",
+        "url": "https://github.com/vllm-project/vllm/pull/43117",
+        "merged_at": "2026-07-11T15:52:53Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "gvisor/gvisor",
+        "title": "tcpip/ipv6: use isEnabled() in disableLocked() to match ipv4 sibling",
+        "url": "https://github.com/gvisor/gvisor/pull/13214",
+        "merged_at": "2026-06-30T01:28:50Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "gvisor/gvisor",
+        "title": "lisafs: bound Walk and WalkStat response payloads to maxMessageSize",
+        "url": "https://github.com/gvisor/gvisor/pull/13243",
+        "merged_at": "2026-06-23T23:45:05Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "gvisor/gvisor",
+        "title": "tcp: mark ISN and timestamp-offset secrets nosave for checkpoint",
+        "url": "https://github.com/gvisor/gvisor/pull/13164",
+        "merged_at": "2026-06-05T01:13:54Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "microsoft/TypeScript",
+        "title": "Update toFixed/toExponential/toPrecision digit range in docs to match the spec",
+        "url": "https://github.com/microsoft/TypeScript/pull/63516",
+        "merged_at": "2026-06-04T20:55:14Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "Azure/Azure-Sentinel",
+        "title": "Add Raw IP Address Used as URL Domain hunting query",
+        "url": "https://github.com/Azure/Azure-Sentinel/pull/14340",
+        "merged_at": "2026-05-26T06:30:21Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "gvisor/gvisor",
+        "title": "tcp: strict RFC 5961 RST sequence validation (contributes to #1132)",
+        "url": "https://github.com/gvisor/gvisor/pull/13165",
+        "merged_at": "2026-05-20T22:37:35Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "gvisor/gvisor",
+        "title": "stack: document conntrack seed regen requirement on iptables S/R",
+        "url": "https://github.com/gvisor/gvisor/pull/13181",
+        "merged_at": "2026-05-19T22:01:20Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "gvisor/gvisor",
+        "title": "lisafs: reject FRemoveXattr on deleted files",
+        "url": "https://github.com/gvisor/gvisor/pull/13153",
+        "merged_at": "2026-05-13T17:53:49Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "swiftlang/swift-package-manager",
+        "title": "registry: reject extracted archives with escaping symlinks",
+        "url": "https://github.com/swiftlang/swift-package-manager/pull/10001",
+        "merged_at": "2026-05-11T21:19:49Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "tink-crypto/tink-py",
+        "title": "fix(jwt): reject JWK Sets with duplicate JSON keys",
+        "url": "https://github.com/tink-crypto/tink-py/pull/76",
+        "merged_at": "2026-05-11T13:29:19Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "gvisor/gvisor",
+        "title": "systrap: hold sysmsgThreadsMu around map read in switchToApp",
+        "url": "https://github.com/gvisor/gvisor/pull/13015",
+        "merged_at": "2026-05-05T21:06:04Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "google/osv-scanner",
+        "title": "fix: correct misleading docstrings in scalibrextract extractors",
+        "url": "https://github.com/google/osv-scanner/pull/2748",
+        "merged_at": "2026-04-28T03:46:36Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "google/bumble",
+        "title": "avdtp: bound message assembler to drop truncated PDUs (DoS prevention)",
+        "url": "https://github.com/google/bumble/pull/918",
+        "merged_at": "2026-04-27T02:01:52Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "google/bumble",
+        "title": "sdp: bound DataElement parse recursion to prevent RecursionError DoS",
+        "url": "https://github.com/google/bumble/pull/914",
+        "merged_at": "2026-04-26T09:22:59Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "google/bumble",
+        "title": "fix: add input validation to prevent remote crash from empty/malforme…",
+        "url": "https://github.com/google/bumble/pull/912",
+        "merged_at": "2026-04-20T06:36:48Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "gvisor/gvisor",
+        "title": "tun: add empty data check before AsSlice()[0] in TUN Write()",
+        "url": "https://github.com/gvisor/gvisor/pull/12925",
+        "merged_at": "2026-04-15T19:22:38Z",
+        "workflow_experiment": false
+      },
+      {
+        "repository": "gvisor/gvisor",
+        "title": "systrap: fix TOCTOU on ThreadID in NotifyInterrupt",
+        "url": "https://github.com/gvisor/gvisor/pull/12927",
+        "merged_at": "2026-04-13T21:07:40Z",
+        "workflow_experiment": false
+      }
+    ]
   }
 }
