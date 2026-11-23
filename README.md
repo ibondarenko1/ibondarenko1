@@ -10,7 +10,8 @@ I research security boundaries in AI infrastructure, industrial devices, and ope
 <!-- BADGES:START -->
 <p>
   <a href="https://github.com/ibondarenko1/ibondarenko1#published-cves"><img alt="14 CVEs published" src="https://img.shields.io/badge/CVEs%20Published-14-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
-  <a href="https://github.com/ibondarenko1/ibondarenko1#cisa-ics-advisories"><img alt="2 CISA ICS advisories with researcher credit" src="https://img.shields.io/badge/CISA%20ICS%20Advisories-2-005ea2?style=flat-square&labelColor=222"></a>
+  <a href="https://github.com/ibondarenko1/ibondarenko1#cisa-coordination"><img alt="7 active CISA coordination cases" src="https://img.shields.io/badge/CISA%20Active%20Cases-7-005ea2?style=flat-square&labelColor=222"></a>
+  <a href="https://github.com/ibondarenko1/ibondarenko1#cisa-ics-advisories"><img alt="2 published CISA ICS advisories with researcher credit" src="https://img.shields.io/badge/CISA%20ICS%20Published-2-005ea2?style=flat-square&labelColor=222"></a>
   <a href="https://github.com/search?q=type%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1&type=pullrequests"><img alt="25 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-25-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
 </p>
 <!-- BADGES:END -->
@@ -25,9 +26,13 @@ I research security boundaries in AI infrastructure, industrial devices, and ope
 - **[Lantronix G520](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01)** - Reported update and package-authenticity flaws. Two published CVEs, researcher credit in CISA ICSA-26-272-01, and vendor remediation.
 
 <!-- CISA_LIST:START -->
-## CISA ICS advisories
+## CISA coordination
 
-Researcher credit in the following CISA advisories.
+7 active vulnerability coordination cases through CISA VINCE-NT. Last verified 2026-11-23.
+
+### CISA ICS advisories
+
+Researcher credit in 2 published CISA ICS advisories.
 
 | Product | Advisory | Published |
 | --- | --- | --- |
