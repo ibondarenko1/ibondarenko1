@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Regenerate the GitHub profile README's badges and public research indexes.
 
-BADGES shows published CVE count, credited CISA advisories, and merged upstream
-PRs. CVE_LIST, CISA_LIST, and ADVISORY_LIST use the public-source registry.
+BADGES shows published CVEs, active CISA coordination cases, published CISA
+advisories, and merged upstream PRs. Coordination uses a dated, manually reviewed
+aggregate; public research indexes use the public-source registry.
 These indexes are delimited by markers in README.md and updated together.
 """
 from datetime import date
@@ -84,6 +85,7 @@ def profile_badges():
     if not isinstance(cisa_config, dict):
         raise ValueError("Missing CISA advisory registry")
     validate_cisa_advisories(cisa_config.get("entries"))
+    cisa_coordination(config)
     entries = config["published_cves"]["entries"]
     ids = set()
     for entry in entries:
@@ -125,6 +127,27 @@ def cisa_advisories(config=None):
     return validate_cisa_advisories(config["cisa_ics"]["entries"])
 
 
+def cisa_coordination(config=None):
+    """Return the reviewed aggregate without exposing private case details."""
+    entry = (config or profile_badges()).get("cisa_coordination")
+    if not isinstance(entry, dict):
+        raise ValueError("Missing CISA coordination aggregate")
+    count = entry.get("active_cases")
+    if isinstance(count, bool) or not isinstance(count, int) or count < 0:
+        raise ValueError("Invalid active CISA case count")
+    verified = entry.get("last_verified")
+    if not isinstance(verified, str) or not re.fullmatch(
+            r"[0-9]{4}-[0-9]{2}-[0-9]{2}", verified):
+        raise ValueError("Invalid CISA coordination verification date")
+    try:
+        date.fromisoformat(verified)
+    except ValueError as exc:
+        raise ValueError("Invalid CISA coordination verification date") from exc
+    if not isinstance(entry.get("source"), str) or not entry["source"].strip():
+        raise ValueError("Missing CISA coordination review source")
+    return entry
+
+
 def build_badges_block(config=None):
     config = config or profile_badges()
     cve_count = len(config["published_cves"]["entries"])
@@ -132,6 +155,7 @@ def build_badges_block(config=None):
     pr_count = merged["count"]
     cves_url = "https://github.com/" + USER + "/" + USER + "#published-cves"
     cisa = cisa_advisories(config)
+    active_cases = cisa_coordination(config)["active_cases"]
     prs_url = merged["url"]
     cve_badge = ("https://img.shields.io/badge/CVEs%20Published-"
                  + str(cve_count)
@@ -141,19 +165,27 @@ def build_badges_block(config=None):
                 + str(pr_count)
                 + "-2da44e?style=flat-square&logo=github"
                 + "&logoColor=white&labelColor=222")
-    cisa_badge = ("https://img.shields.io/badge/CISA%20ICS%20Advisories-"
+    cisa_badge = ("https://img.shields.io/badge/CISA%20ICS%20Published-"
                   + str(len(cisa))
                   + "-005ea2?style=flat-square&labelColor=222")
+    coordination_badge = ("https://img.shields.io/badge/CISA%20Active%20Cases-"
+                          + str(active_cases)
+                          + "-005ea2?style=flat-square&labelColor=222")
     cisa_url = cves_url.rsplit("#", 1)[0] + "#cisa-ics-advisories"
+    coordination_url = cves_url.rsplit("#", 1)[0] + "#cisa-coordination"
     return (
         "<p>\n"
         '  <a href="' + cves_url + '">'
         '<img alt="' + str(cve_count) + ' CVE'
         + ('' if cve_count == 1 else 's') + ' published" '
         'src="' + cve_badge + '"></a>\n'
+        '  <a href="' + coordination_url + '">'
+        '<img alt="' + str(active_cases) + ' active CISA coordination '
+        + ('case' if active_cases == 1 else 'cases') + '" '
+        'src="' + coordination_badge + '"></a>\n'
         '  <a href="' + cisa_url + '">'
         '<img alt="' + str(len(cisa))
-        + ' CISA ICS ' + ("advisory" if len(cisa) == 1 else "advisories")
+        + ' published CISA ICS ' + ("advisory" if len(cisa) == 1 else "advisories")
         + ' with researcher credit" '
         'src="' + cisa_badge + '"></a>\n'
         '  <a href="' + prs_url + '">'
@@ -199,12 +231,22 @@ def build_advisory_list(config=None):
 
 
 def build_cisa_list(config=None):
-    """Build a compact index of CISA advisories crediting the researcher."""
-    rows = ["## CISA ICS advisories", "",
-            "Researcher credit in the following CISA advisories.", "",
+    """Show active coordination separately from published researcher credits."""
+    config = config or profile_badges()
+    coordination = cisa_coordination(config)
+    active_cases = coordination["active_cases"]
+    advisories = cisa_advisories(config)
+    rows = ["## CISA coordination", "",
+            f"{active_cases} active vulnerability coordination "
+            + ("case" if active_cases == 1 else "cases")
+            + " through CISA VINCE-NT. Last verified "
+            + coordination["last_verified"] + ".", "",
+            "### CISA ICS advisories", "",
+            f"Researcher credit in {len(advisories)} published CISA ICS "
+            + ("advisory" if len(advisories) == 1 else "advisories") + ".", "",
             "| Product | Advisory | Published |",
             "| --- | --- | --- |"]
-    for item in cisa_advisories(config):
+    for item in advisories:
         advisory = "[" + item["advisory"] + "](" + item["url"] + ")"
         rows.append("| " + item["product"] + " | " + advisory +
                     " | " + item["published_at"] + " |")
