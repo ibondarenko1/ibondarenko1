@@ -1,7 +1,12 @@
+import io
+import json
 import pathlib
 import sys
+import tempfile
 import unittest
+from contextlib import redirect_stdout
 from copy import deepcopy
+from unittest.mock import patch
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -10,42 +15,80 @@ import update_readme
 
 
 class UpdateReadmeTests(unittest.TestCase):
-    def test_merged_prs_uses_reviewed_registry_value(self):
-        config = {
-            "merged_prs": {
-                "count": 25,
-                "verified_at": "2026-10-22",
-                "url": "https://github.com/search?q=test&type=pullrequests",
-            }
-        }
-        self.assertEqual(update_readme.merged_prs(config)["count"], 25)
-
-    def test_merged_prs_rejects_invalid_count(self):
-        config = {
-            "merged_prs": {
-                "count": True,
-                "verified_at": "2026-10-22",
-                "url": "https://github.com/search?q=test&type=pullrequests",
-            }
-        }
-        with self.assertRaisesRegex(ValueError, "Invalid merged PR count"):
-            update_readme.merged_prs(config)
-
-    def test_badge_links_to_the_same_public_search(self):
+    def test_profile_evidence_counts_cves_independently_of_other_activity(self):
         config = update_readme.profile_badges()
-        block = update_readme.build_badges_block()
-        self.assertIn(config["merged_prs"]["url"], block)
+        count = len(config["published_cves"]["entries"])
+        expected = (
+            f"Public records credit my work in {count} published CVEs. "
+            "[Research record and sources](RESEARCH.md)."
+        )
+        self.assertEqual(update_readme.build_profile_evidence(config), expected)
+        config["cisa_coordination"]["active_cases"] = 99
+        config["published_advisories"]["entries"] = []
+        self.assertEqual(update_readme.build_profile_evidence(config), expected)
 
-    def test_cisa_badge_counts_credits_and_uses_profile_anchor(self):
+    def test_generation_updates_both_documents_and_preserves_editorial_text(self):
         config = update_readme.profile_badges()
-        entries = deepcopy(update_readme.cisa_advisories(config))
-        for count, noun in ((1, "advisory"), (2, "advisories")):
-            with self.subTest(count=count):
-                config["cisa_ics"]["entries"] = entries[:count]
-                block = update_readme.build_badges_block(config)
-                self.assertIn(f"CISA%20ICS%20Published-{count}-", block)
-                self.assertIn(f"{count} published CISA ICS {noun} with researcher credit", block)
-                self.assertIn("#cisa-ics-advisories", block)
+        new_cve = {"id": "CVE-2099-10000", "source": "https://example.test/cve"}
+        new_advisory = {
+            "id": "GHSA-test-test-test",
+            "source": "https://example.test/advisory",
+            "product": "Test product",
+            "summary": "Synthetic test advisory.",
+            "published_at": "2099-01-01",
+        }
+        config["published_cves"]["entries"].append(new_cve)
+        config["published_advisories"]["entries"].append(new_advisory)
+        original_readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        original_research = (ROOT / "RESEARCH.md").read_text(encoding="utf-8")
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            readme, research, registry = (root / name for name in (
+                "README.md", "RESEARCH.md", "profile_badges.json"))
+            readme.write_text(original_readme, encoding="utf-8")
+            research.write_text(original_research, encoding="utf-8")
+            registry.write_text(json.dumps(config), encoding="utf-8")
+            with patch.multiple(update_readme, README=str(readme),
+                                RESEARCH=str(research), PROFILE_BADGES=str(registry)), \
+                    redirect_stdout(io.StringIO()):
+                update_readme.main()
+                generated_readme = readme.read_text(encoding="utf-8")
+                generated_research = research.read_text(encoding="utf-8")
+                self.assertEqual(generated_readme, update_readme.replace_block(
+                    original_readme, "PROFILE_EVIDENCE",
+                    update_readme.build_profile_evidence(config)))
+                for entry in (new_cve, new_advisory):
+                    self.assertIn(f"[{entry['id']}]({entry['source']})", generated_research)
+                    self.assertNotIn(entry["id"], generated_readme)
+                active = config["cisa_coordination"]["active_cases"]
+                published = len(config["cisa_ics"]["entries"])
+                self.assertIn(f"{active} active vulnerability coordination cases", generated_research)
+                self.assertIn(f"Researcher credit in {published} published CISA ICS advisories.", generated_research)
+                self.assertNotIn("img.shields.io", generated_readme)
+                update_readme.main()
+                self.assertEqual(readme.read_text(encoding="utf-8"), generated_readme)
+                self.assertEqual(research.read_text(encoding="utf-8"), generated_research)
+
+    def test_missing_appendix_marker_does_not_partially_update_profile(self):
+        config = update_readme.profile_badges()
+        config["published_cves"]["entries"].append(
+            {"id": "CVE-2099-10000", "source": "https://example.test/cve"})
+        original_readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        original_research = (ROOT / "RESEARCH.md").read_text(encoding="utf-8").replace(
+            "<!-- ADVISORY_LIST:END -->", "")
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            readme, research, registry = (root / name for name in (
+                "README.md", "RESEARCH.md", "profile_badges.json"))
+            readme.write_text(original_readme, encoding="utf-8")
+            research.write_text(original_research, encoding="utf-8")
+            registry.write_text(json.dumps(config), encoding="utf-8")
+            with patch.multiple(update_readme, README=str(readme),
+                                RESEARCH=str(research), PROFILE_BADGES=str(registry)):
+                with self.assertRaisesRegex(SystemExit, "ADVISORY_LIST"):
+                    update_readme.main()
+            self.assertEqual(readme.read_text(encoding="utf-8"), original_readme)
+            self.assertEqual(research.read_text(encoding="utf-8"), original_research)
 
     def test_cisa_list_links_each_advisory(self):
         config = update_readme.profile_badges()
@@ -65,11 +108,7 @@ class UpdateReadmeTests(unittest.TestCase):
         for active_count in (7, 3):
             with self.subTest(active_count=active_count):
                 config["cisa_coordination"]["active_cases"] = active_count
-                badges = update_readme.build_badges_block(config)
                 section = update_readme.build_cisa_list(config)
-                self.assertIn(f"CISA%20Active%20Cases-{active_count}-", badges)
-                self.assertIn(f"CISA%20ICS%20Published-{published_count}-", badges)
-                self.assertIn("#cisa-coordination", badges)
                 self.assertIn(f"{active_count} active vulnerability coordination cases", section)
                 self.assertIn(f"Researcher credit in {published_count} published CISA ICS advisories.", section)
                 self.assertIn(config["cisa_coordination"]["last_verified"], section)
