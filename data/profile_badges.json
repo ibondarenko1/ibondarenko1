@@ -58,6 +58,10 @@
         "summary": "Multimodal media retrieval bypass enabling SSRF and local-file access."
       },
       {
+        "id": "CVE-2026-80466",
+        "source": "https://www.cve.org/CVERecord?id=CVE-2026-80466"
+      },
+      {
         "id": "CVE-2026-84173",
         "source": "https://www.cve.org/CVERecord?id=CVE-2026-84173",
         "product": "Eclipse Ankaios",
@@ -68,6 +72,10 @@
         "source": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01",
         "product": "Lantronix G520",
         "summary": "Cross-site scripting through update metadata."
+      },
+      {
+        "id": "CVE-2026-88850",
+        "source": "https://www.cve.org/CVERecord?id=CVE-2026-88850"
       },
       {
         "id": "CVE-2026-91191",

@@ -9,7 +9,7 @@ I research security boundaries in AI infrastructure, industrial devices, and ope
 
 <!-- BADGES:START -->
 <p>
-  <a href="https://github.com/ibondarenko1/ibondarenko1#published-cves"><img alt="12 CVEs published" src="https://img.shields.io/badge/CVEs%20Published-12-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
+  <a href="https://github.com/ibondarenko1/ibondarenko1#published-cves"><img alt="14 CVEs published" src="https://img.shields.io/badge/CVEs%20Published-14-c0392b?style=flat-square&logo=cve&logoColor=white&labelColor=222"></a>
   <a href="https://github.com/ibondarenko1/ibondarenko1#cisa-ics-advisories"><img alt="2 CISA ICS advisories with researcher credit" src="https://img.shields.io/badge/CISA%20ICS%20Advisories-2-005ea2?style=flat-square&labelColor=222"></a>
   <a href="https://github.com/search?q=type%3Apr+author%3Aibondarenko1+is%3Amerged+-user%3Aibondarenko1&type=pullrequests"><img alt="25 merged PRs" src="https://img.shields.io/badge/Merged%20PRs-25-2da44e?style=flat-square&logo=github&logoColor=white&labelColor=222"></a>
 </p>
@@ -71,8 +71,10 @@ Published CVEs with public researcher credit. Listed roles follow the source adv
 - [CVE-2026-46517](https://github.com/advisories/GHSA-9xq9-36w5-q796) · **LMDeploy**: Unsafe remote-code trust during model initialization.
 - [CVE-2026-64849](https://github.com/advisories/GHSA-7gwp-5pfp-969j) · **MLflow**: Unauthenticated webhook SSRF via redirects and DNS rebinding.
 - [CVE-2026-73560](https://github.com/advisories/GHSA-4hhp-h66f-j5j7) · **vLLM**: Multimodal media retrieval bypass enabling SSRF and local-file access.
+- [CVE-2026-80466](https://www.cve.org/CVERecord?id=CVE-2026-80466)
 - [CVE-2026-84173](https://www.cve.org/CVERecord?id=CVE-2026-84173) · **Eclipse Ankaios**: Authorization bypass in Control Interface workload rules.
 - [CVE-2026-84409](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01) · **Lantronix G520**: Cross-site scripting through update metadata.
+- [CVE-2026-88850](https://www.cve.org/CVERecord?id=CVE-2026-88850)
 - [CVE-2026-91191](https://www.cisa.gov/news-events/ics-advisories/icsa-26-272-01) · **Lantronix G520**: Improper cryptographic signature verification of update packages.
 <!-- CVE_LIST:END -->
 
