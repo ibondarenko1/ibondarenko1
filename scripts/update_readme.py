@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Regenerate the GitHub profile README's badges and public research indexes.
+"""Refresh the profile's evidence sentence and the separate research record.
 
-BADGES shows published CVEs, active CISA coordination cases, published CISA
-advisories, and merged upstream PRs. Coordination uses a dated, manually reviewed
-aggregate; public research indexes use the public-source registry.
-These indexes are delimited by markers in README.md and updated together.
+README.md keeps an editorial profile and one generated CVE count. RESEARCH.md
+holds the public CVE/advisory indexes and a dated coordination aggregate.
+Only marked sections are regenerated; the surrounding text is preserved.
 """
 from datetime import date
 import json
@@ -12,9 +11,9 @@ import os
 import re
 import sys
 
-USER = "ibondarenko1"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 README = os.path.join(ROOT, "README.md")
+RESEARCH = os.path.join(ROOT, "RESEARCH.md")
 PROFILE_BADGES = os.path.join(ROOT, "data", "profile_badges.json")
 CISA_ADVISORY_RE = re.compile(r"ICSA-[0-9]{2}-[0-9]{3}-[0-9]{2}")
 
@@ -51,25 +50,6 @@ def validate_cisa_advisories(entries):
         if entry.get("url") != expected_url:
             raise ValueError("Unexpected CISA URL for " + advisory)
     return entries
-
-
-def merged_prs(config=None):
-    """Count merged PRs authored by USER in repositories USER does not own.
-
-    GitHub's repository-scoped Actions token cannot search other repositories,
-    and anonymous searches from Actions runners have returned false zeroes.
-    Keep the manually verified public count and its exact query together in the
-    reviewed profile registry instead of letting the workflow corrupt the badge.
-    """
-    entry = (config or profile_badges())["merged_prs"]
-    count = entry.get("count")
-    if isinstance(count, bool) or not isinstance(count, int) or count < 0:
-        raise ValueError("Invalid merged PR count")
-    if not entry.get("url", "").startswith("https://github.com/search?"):
-        raise ValueError("Invalid merged PR public search URL")
-    if not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", entry.get("verified_at", "")):
-        raise ValueError("Invalid merged PR verification date")
-    return entry
 
 
 def profile_badges():
@@ -148,61 +128,25 @@ def cisa_coordination(config=None):
     return entry
 
 
-def build_badges_block(config=None):
+def build_profile_evidence(config=None):
+    """Keep one source-linked publication count in the editorial profile."""
     config = config or profile_badges()
     cve_count = len(config["published_cves"]["entries"])
-    merged = merged_prs(config)
-    pr_count = merged["count"]
-    cves_url = "https://github.com/" + USER + "/" + USER + "#published-cves"
-    cisa = cisa_advisories(config)
-    active_cases = cisa_coordination(config)["active_cases"]
-    prs_url = merged["url"]
-    cve_badge = ("https://img.shields.io/badge/CVEs%20Published-"
-                 + str(cve_count)
-                 + "-c0392b?style=flat-square&logo=cve"
-                 + "&logoColor=white&labelColor=222")
-    pr_badge = ("https://img.shields.io/badge/Merged%20PRs-"
-                + str(pr_count)
-                + "-2da44e?style=flat-square&logo=github"
-                + "&logoColor=white&labelColor=222")
-    cisa_badge = ("https://img.shields.io/badge/CISA%20ICS%20Published-"
-                  + str(len(cisa))
-                  + "-005ea2?style=flat-square&labelColor=222")
-    coordination_badge = ("https://img.shields.io/badge/CISA%20Active%20Cases-"
-                          + str(active_cases)
-                          + "-005ea2?style=flat-square&labelColor=222")
-    cisa_url = cves_url.rsplit("#", 1)[0] + "#cisa-ics-advisories"
-    coordination_url = cves_url.rsplit("#", 1)[0] + "#cisa-coordination"
     return (
-        "<p>\n"
-        '  <a href="' + cves_url + '">'
-        '<img alt="' + str(cve_count) + ' CVE'
-        + ('' if cve_count == 1 else 's') + ' published" '
-        'src="' + cve_badge + '"></a>\n'
-        '  <a href="' + coordination_url + '">'
-        '<img alt="' + str(active_cases) + ' active CISA coordination '
-        + ('case' if active_cases == 1 else 'cases') + '" '
-        'src="' + coordination_badge + '"></a>\n'
-        '  <a href="' + cisa_url + '">'
-        '<img alt="' + str(len(cisa))
-        + ' published CISA ICS ' + ("advisory" if len(cisa) == 1 else "advisories")
-        + ' with researcher credit" '
-        'src="' + cisa_badge + '"></a>\n'
-        '  <a href="' + prs_url + '">'
-        '<img alt="' + str(pr_count) + ' merged PR'
-        + ('' if pr_count == 1 else 's') + '" '
-        'src="' + pr_badge + '"></a>\n'
-        "</p>"
+        "Public records credit my work in " + str(cve_count) + " published CVE"
+        + ("" if cve_count == 1 else "s")
+        + ". [Research record and sources](RESEARCH.md)."
     )
 
 
-def build_cve_list():
-    """Build the clickable, descriptive CVE index from the badge registry.
+def build_cve_list(config=None):
+    """Build the clickable, descriptive CVE index from the reviewed registry.
 
     Automatically discovered entries remain valid before optional editorial
     metadata is reviewed and added to the registry.
     """
-    entries = profile_badges()["published_cves"]["entries"]
+    config = config or profile_badges()
+    entries = config["published_cves"]["entries"]
     rows = ["## Published CVEs", "",
             "Published CVEs with public researcher credit. Listed roles follow the source advisory.", ""]
     for item in sorted(entries, key=lambda row: row["id"]):
@@ -257,23 +201,35 @@ def replace_block(text, name, content):
     start, end = "<!-- %s:START -->" % name, "<!-- %s:END -->" % name
     pattern = re.compile(re.escape(start) + ".*?" + re.escape(end), re.DOTALL)
     if not pattern.search(text):
-        sys.exit("marker pair %s not found in README.md" % name)
+        sys.exit("marker pair %s not found" % name)
     return pattern.sub(lambda _m: start + "\n" + content + "\n" + end, text)
 
 
 def main():
+    config = profile_badges()
     with open(README, encoding="utf-8") as handle:
-        original = handle.read()
-    updated = replace_block(original, "BADGES", build_badges_block())
-    updated = replace_block(updated, "CISA_LIST", build_cisa_list())
-    updated = replace_block(updated, "CVE_LIST", build_cve_list())
-    updated = replace_block(updated, "ADVISORY_LIST", build_advisory_list())
-    if updated == original:
-        print("README.md already up to date.")
-        return
-    with open(README, "w", encoding="utf-8", newline="\n") as handle:
-        handle.write(updated)
-    print("README.md updated.")
+        original_readme = handle.read()
+    with open(RESEARCH, encoding="utf-8") as handle:
+        original_research = handle.read()
+    updated_readme = replace_block(
+        original_readme, "PROFILE_EVIDENCE", build_profile_evidence(config))
+    updated_research = replace_block(
+        original_research, "CISA_LIST", build_cisa_list(config))
+    updated_research = replace_block(
+        updated_research, "CVE_LIST", build_cve_list(config))
+    updated_research = replace_block(
+        updated_research, "ADVISORY_LIST", build_advisory_list(config))
+    # Validate every generated section before writing either document.
+    for path, original, updated in (
+            (README, original_readme, updated_readme),
+            (RESEARCH, original_research, updated_research)):
+        name = os.path.basename(path)
+        if updated == original:
+            print(name + " already up to date.")
+            continue
+        with open(path, "w", encoding="utf-8", newline="\n") as handle:
+            handle.write(updated)
+        print(name + " updated.")
 
 
 if __name__ == "__main__":
