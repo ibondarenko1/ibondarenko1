@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Refresh the profile's evidence sentence and the separate research record.
+"""Refresh the profile's results and complete public research records.
 
-README.md keeps an editorial profile and one generated CVE count. RESEARCH.md
-holds the public CVE/advisory indexes and a dated coordination aggregate.
+README.md includes linked counts and expandable CVE, advisory, and PR indexes.
+RESEARCH.md retains its CVE/advisory indexes and dated coordination aggregate.
 Only marked sections are regenerated; the surrounding text is preserved.
 """
-from datetime import date
+from datetime import date, datetime
+from html import escape
 import json
 import os
 import re
@@ -66,6 +67,7 @@ def profile_badges():
         raise ValueError("Missing CISA advisory registry")
     validate_cisa_advisories(cisa_config.get("entries"))
     cisa_coordination(config)
+    merged_prs(config)
     entries = config["published_cves"]["entries"]
     ids = set()
     for entry in entries:
@@ -128,15 +130,88 @@ def cisa_coordination(config=None):
     return entry
 
 
+def merged_prs(config=None):
+    """Validate the complete, dated inventory behind the merged PR count."""
+    registry = (config or profile_badges()).get("merged_prs")
+    if not isinstance(registry, dict):
+        raise ValueError("Missing merged PR registry")
+    count = registry.get("count")
+    entries = registry.get("entries")
+    if isinstance(count, bool) or not isinstance(count, int) or count < 0:
+        raise ValueError("Invalid merged PR count")
+    if not isinstance(entries, list) or count != len(entries):
+        raise ValueError("Merged PR count must match the complete entries list")
+    verified = registry.get("verified_at")
+    if not isinstance(verified, str) or not re.fullmatch(
+            r"[0-9]{4}-[0-9]{2}-[0-9]{2}", verified):
+        raise ValueError("Invalid merged PR verification date")
+    try:
+        date.fromisoformat(verified)
+    except ValueError as exc:
+        raise ValueError("Invalid merged PR verification date") from exc
+    if not isinstance(registry.get("url"), str) or not registry["url"].startswith(
+            "https://github.com/search?"):
+        raise ValueError("Missing merged PR source query")
+    seen = set()
+    for entry in entries:
+        if not isinstance(entry, dict):
+            raise ValueError("Invalid merged PR entry")
+        repository = entry.get("repository")
+        if not isinstance(repository, str) or not re.fullmatch(
+                r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository):
+            raise ValueError("Invalid merged PR repository")
+        if repository.split("/", 1)[0].lower() == "ibondarenko1":
+            raise ValueError("Merged PR inventory excludes personal repositories")
+        url = entry.get("url")
+        if not isinstance(url, str) or not re.fullmatch(
+                re.escape("https://github.com/" + repository + "/pull/")
+                + r"[1-9][0-9]*", url):
+            raise ValueError("Unexpected merged PR URL for " + repository)
+        if url.lower() in seen:
+            raise ValueError("Duplicate merged PR URL: " + url)
+        seen.add(url.lower())
+        if not isinstance(entry.get("title"), str) or not entry["title"].strip():
+            raise ValueError("Missing merged PR title")
+        if "merged_at" in entry:
+            try:
+                datetime.strptime(entry["merged_at"], "%Y-%m-%dT%H:%M:%SZ")
+            except (TypeError, ValueError) as exc:
+                raise ValueError("Invalid merged PR date") from exc
+        if "workflow_experiment" in entry and not isinstance(
+                entry["workflow_experiment"], bool):
+            raise ValueError("Invalid merged PR workflow experiment label")
+    return registry
+
+
+def markdown_text(value):
+    """Keep external titles readable without introducing Markdown or HTML."""
+    value = escape(" ".join(value.split()), quote=False)
+    return re.sub(r"([\\`*_\[\]|])", r"\\\1", value)
+
+
 def build_profile_evidence(config=None):
-    """Keep one source-linked publication count in the editorial profile."""
+    """Show independent counts with links to their complete records."""
     config = config or profile_badges()
     cve_count = len(config["published_cves"]["entries"])
-    return (
-        "Public records credit my work in " + str(cve_count) + " published CVE"
-        + ("" if cve_count == 1 else "s")
-        + ". [Research record and sources](RESEARCH.md)."
-    )
+    prs = merged_prs(config)
+    coordination = cisa_coordination(config)
+    cisa_count = len(cisa_advisories(config))
+    advisories = config.get("published_advisories", {}).get("entries", [])
+    products = "; ".join(dict.fromkeys(
+        markdown_text(entry["product"]) for entry in advisories))
+    rows = ["## Results", "",
+            "| Published CVEs | Merged pull requests | Active CISA cases | Published CISA ICS advisories |",
+            "| --- | --- | --- | --- |",
+            f"| **[{cve_count}](#published-cves)** | "
+            f"**[{prs['count']}](#merged-pull-requests)** | "
+            f"**[{coordination['active_cases']}](#cisa-coordination)** | "
+            f"**[{cisa_count}](#cisa-ics-advisories)** |", "",
+            f"[{len(advisories)} vendor advisories](#published-vendor-advisories), "
+            "tracked separately from the CVE total"
+            + (": " + products if products else "") + ".", "",
+            "Merged pull requests verified " + prs["verified_at"]
+            + ". Active CISA cases verified " + coordination["last_verified"] + "."]
+    return "\n".join(rows)
 
 
 def build_cve_list(config=None):
@@ -174,6 +249,49 @@ def build_advisory_list(config=None):
     return "\n".join(rows)
 
 
+def build_merged_pr_list(config=None):
+    """List every reviewed merged PR without treating every entry as a fix."""
+    registry = merged_prs(config)
+    rows = ["## Merged pull requests", "",
+            f"{registry['count']} merged pull requests authored by ibondarenko1 "
+            "outside personal repositories. Includes code, tests, documentation, "
+            "detection queries, resource entries, and workflow experiments. "
+            "Company workflow experiments are labelled below.", "",
+            "[Source query](" + registry["url"] + "). Verified "
+            + registry["verified_at"] + ".", "",
+            "| Pull request | Contribution | Merged |",
+            "| --- | --- | --- |"]
+    for entry in registry["entries"]:
+        number = entry["url"].rsplit("/", 1)[1]
+        link = ("[" + markdown_text(entry["repository"]) + "#" + number
+                + "](" + entry["url"] + ")")
+        title = markdown_text(entry["title"])
+        if entry.get("workflow_experiment"):
+            title += " (company workflow experiment)"
+        rows.append("| " + link + " | " + title + " | "
+                    + entry.get("merged_at", "")[:10] + " |")
+    return "\n".join(rows)
+
+
+def build_profile_record(config=None):
+    """Keep complete inventories in the profile without nested block markers."""
+    config = config or profile_badges()
+    sections = [
+        (len(config["published_cves"]["entries"]), "published CVEs",
+         '<a name="published-cves"></a>\n\n',
+         build_cve_list(config)),
+        (len(config.get("published_advisories", {}).get("entries", [])),
+         "vendor advisories", '<a name="published-vendor-advisories"></a>\n\n',
+         build_advisory_list(config)),
+        (merged_prs(config)["count"], "merged pull requests",
+         '<a name="merged-pull-requests"></a>\n\n', build_merged_pr_list(config)),
+    ]
+    return "\n\n".join(
+        anchor + f"<details>\n<summary>All {count} {label}</summary>\n\n"
+        + body.partition("\n\n")[2] + "\n\n</details>"
+        for count, label, anchor, body in sections)
+
+
 def build_cisa_list(config=None):
     """Show active coordination separately from published researcher credits."""
     config = config or profile_badges()
@@ -197,11 +315,27 @@ def build_cisa_list(config=None):
     return "\n".join(rows)
 
 
+def validate_blocks(text, names):
+    """Require unique, ordered, non-overlapping generated sections."""
+    spans = []
+    for name in names:
+        start, end = "<!-- %s:START -->" % name, "<!-- %s:END -->" % name
+        if text.count(start) != 1 or text.count(end) != 1:
+            sys.exit("marker pair %s must occur exactly once" % name)
+        left, right = text.index(start), text.index(end)
+        if left >= right:
+            sys.exit("marker pair %s is out of order" % name)
+        spans.append((left, right + len(end), name))
+    spans.sort()
+    for previous, current in zip(spans, spans[1:]):
+        if current[0] < previous[1]:
+            sys.exit("marker pairs %s and %s overlap" % (previous[2], current[2]))
+
+
 def replace_block(text, name, content):
+    validate_blocks(text, (name,))
     start, end = "<!-- %s:START -->" % name, "<!-- %s:END -->" % name
     pattern = re.compile(re.escape(start) + ".*?" + re.escape(end), re.DOTALL)
-    if not pattern.search(text):
-        sys.exit("marker pair %s not found" % name)
     return pattern.sub(lambda _m: start + "\n" + content + "\n" + end, text)
 
 
@@ -211,8 +345,12 @@ def main():
         original_readme = handle.read()
     with open(RESEARCH, encoding="utf-8") as handle:
         original_research = handle.read()
+    validate_blocks(original_readme, ("PROFILE_EVIDENCE", "PROFILE_RECORD"))
+    validate_blocks(original_research, ("CISA_LIST", "CVE_LIST", "ADVISORY_LIST"))
     updated_readme = replace_block(
         original_readme, "PROFILE_EVIDENCE", build_profile_evidence(config))
+    updated_readme = replace_block(
+        updated_readme, "PROFILE_RECORD", build_profile_record(config))
     updated_research = replace_block(
         original_research, "CISA_LIST", build_cisa_list(config))
     updated_research = replace_block(
